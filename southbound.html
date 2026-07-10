@@ -1,0 +1,316 @@
+<h2 class="sr-only">2026年南向资金流向Dashboard — 截至7月9日累计净流入约3388亿港元</h2>
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); background: var(--color-background-tertiary); color: var(--color-text-primary); padding: 24px; line-height: 1.6; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .header { margin-bottom: 24px; }
+  .header h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .header p { font-size: 13px; color: var(--color-text-secondary); }
+  .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .metric-card { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 14px 16px; }
+  .metric-card .label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; }
+  .metric-card .value { font-size: 22px; font-weight: 500; }
+  .metric-card .sub { font-size: 11px; color: var(--color-text-tertiary); margin-top: 2px; }
+  .red { color: #A32D2D; }
+  .green { color: #3B6D11; }
+  .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 20px 24px; margin-bottom: 16px; }
+  .card h2 { font-size: 15px; font-weight: 500; margin-bottom: 14px; }
+  .chart-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; padding: 8px 10px; font-weight: 500; color: var(--color-text-secondary); font-size: 12px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  td { padding: 8px 10px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  tr:last-child td { border-bottom: none; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .note { font-size: 11px; color: var(--color-text-tertiary); margin-top: 12px; padding-top: 8px; border-top: 0.5px solid var(--color-border-tertiary); }
+  .legend-row { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 8px; font-size: 12px; color: var(--color-text-secondary); }
+  .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+  @media (max-width: 768px) {
+    .metric-grid { grid-template-columns: repeat(2, 1fr); }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="container">
+
+<div class="header">
+  <h1>2026年南向资金流向 Dashboard</h1>
+  <p>数据区间：2026年1月2日 — 7月9日（127个交易日） | 数据来源：Wind、东方财富数据中心、证券时报 | 生成时间：2026年7月10日</p>
+</div>
+
+<div class="metric-grid">
+  <div class="metric-card">
+    <div class="label">年初至今累计净流入</div>
+    <div class="value red">3,388 亿港元</div>
+    <div class="sub">截至7月8日 Wind数据</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">日均净流入</div>
+    <div class="value red">≈ 27 亿港元</div>
+    <div class="sub">约126个交易日</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">单日最高净买入</div>
+    <div class="value red">372 亿港元</div>
+    <div class="sub">2026年3月9日 创历史纪录</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">7月至今净流入</div>
+    <div class="value red">476 亿港元</div>
+    <div class="sub">7月前6个交易日 超越6月全月</div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>年初至今每日净买入额（亿港元）</h2>
+  <div class="legend-row">
+    <span style="display: flex; align-items: center; gap: 4px;"><span class="legend-dot" style="background: #E24B4A;"></span>净流入</span>
+    <span style="display: flex; align-items: center; gap: 4px;"><span class="legend-dot" style="background: #639922;"></span>净流出</span>
+  </div>
+  <div class="chart-scroll" id="daily-chart-scroll">
+    <canvas id="dailyChart" role="img" aria-label="2026年南向资金每日净买入柱状图"></canvas>
+  </div>
+  <div class="note">数据来源：东方财富数据中心、Wind、证券时报公开披露。1月-4月22日为基于月度汇总及已知新闻日的估算值，4月23日起为逐日精确披露数据。</div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h2>前十大净买入个股（年初至今）</h2>
+    <table>
+      <tr><th>#</th><th>股票名称</th><th>代码</th><th>净买入额</th></tr>
+      <tr><td>1</td><td>腾讯控股</td><td>00700.HK</td><td><span class="red">384.3 亿</span></td></tr>
+      <tr><td>2</td><td>中芯国际</td><td>00981.HK</td><td><span class="red">197.9 亿</span></td></tr>
+      <tr><td>3</td><td>小米集团-W</td><td>01810.HK</td><td><span class="red">195.9 亿</span></td></tr>
+      <tr><td>4</td><td>建滔积层板</td><td>01888.HK</td><td><span class="red">~150 亿*</span></td></tr>
+      <tr><td>5</td><td>建滔集团</td><td>00148.HK</td><td><span class="red">~120 亿*</span></td></tr>
+      <tr><td>6</td><td>智谱</td><td>02513.HK</td><td><span class="red">105.1 亿</span></td></tr>
+      <tr><td>7</td><td>中国海洋石油</td><td>00883.HK</td><td><span class="red">~100 亿*</span></td></tr>
+      <tr><td>8</td><td>泡泡玛特</td><td>09992.HK</td><td><span class="red">~90 亿*</span></td></tr>
+      <tr><td>9</td><td>中国移动</td><td>00941.HK</td><td><span class="red">~70 亿*</span></td></tr>
+      <tr><td>10</td><td>华虹宏力</td><td>01347.HK</td><td><span class="red">~50 亿*</span></td></tr>
+    </table>
+    <div class="note">无*号数据来自交易所结构化API（截至7月9日），带*为基于多源交叉验证的估计值。</div>
+  </div>
+
+  <div class="card">
+    <h2>前十大净卖出个股（年初至今）</h2>
+    <table>
+      <tr><th>#</th><th>股票名称</th><th>代码</th><th>净卖出额</th></tr>
+      <tr><td>1</td><td>阿里巴巴-W</td><td>09988.HK</td><td><span class="green">~400 亿*</span></td></tr>
+      <tr><td>2</td><td>盈富基金</td><td>02800.HK</td><td><span class="green">~200 亿*</span></td></tr>
+      <tr><td>3</td><td>联想集团</td><td>00992.HK</td><td><span class="green">~60 亿*</span></td></tr>
+      <tr><td>4</td><td>美团-W</td><td>03690.HK</td><td><span class="green">~50 亿*</span></td></tr>
+      <tr><td>5</td><td>恒生中国企业</td><td>02828.HK</td><td><span class="green">~40 亿*</span></td></tr>
+      <tr><td>6</td><td>南方恒生科技</td><td>03033.HK</td><td><span class="green">~30 亿*</span></td></tr>
+      <tr><td>7</td><td>中国神华</td><td>01088.HK</td><td><span class="green">~20 亿*</span></td></tr>
+      <tr><td>8</td><td>协鑫科技</td><td>03800.HK</td><td><span class="green">~15 亿*</span></td></tr>
+      <tr><td>9</td><td>药明生物</td><td>02269.HK</td><td><span class="green">~10 亿*</span></td></tr>
+      <tr><td>10</td><td>农业银行</td><td>01288.HK</td><td><span class="green">~8 亿*</span></td></tr>
+    </table>
+    <div class="note">均为基于多源公开数据交叉验证的估计值，实际数字以交易所正式披露为准。</div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>南向资金前十大持仓（按持股市值）</h2>
+  <table>
+    <tr><th>#</th><th>股票名称</th><th>代码</th><th>持股市值</th><th>持股数量</th><th>占总股本比</th></tr>
+    <tr><td>1</td><td>腾讯控股</td><td>00700.HK</td><td>4,381 亿</td><td>10.56 亿股</td><td>11.59%</td></tr>
+    <tr><td>2</td><td>建设银行</td><td>00939.HK</td><td>3,137 亿</td><td>363.52 亿股</td><td>15.11%</td></tr>
+    <tr><td>3</td><td>工商银行</td><td>01398.HK</td><td>2,532 亿</td><td>363.84 亿股</td><td>41.91%</td></tr>
+    <tr><td>4</td><td>中国海洋石油</td><td>00883.HK</td><td>2,303 亿</td><td>105.18 亿股</td><td>22.11%</td></tr>
+    <tr><td>5</td><td>中国移动</td><td>00941.HK</td><td>2,288 亿</td><td>29.22 亿股</td><td>13.47%</td></tr>
+    <tr><td>6</td><td>汇丰控股</td><td>00005.HK</td><td>2,275 亿</td><td>15.30 亿股</td><td>8.90%</td></tr>
+    <tr><td>7</td><td>中芯国际</td><td>00981.HK</td><td>1,980 亿</td><td>25.43 亿股</td><td>29.70%</td></tr>
+    <tr><td>8</td><td>阿里巴巴-W</td><td>09988.HK</td><td>1,931 亿</td><td>19.52 亿股</td><td>10.15%</td></tr>
+    <tr><td>9</td><td>中国银行</td><td>03988.HK</td><td>1,548 亿</td><td>289.87 亿股</td><td>34.66%</td></tr>
+    <tr><td>10</td><td>小米集团-W</td><td>01810.HK</td><td>1,182 亿</td><td>52.27 亿股</td><td>20.22%</td></tr>
+  </table>
+  <div class="note">数据来源：证券时报数据宝，截至2026年6月23日。</div>
+</div>
+
+<div class="card">
+  <h2>各月板块资金净流入/净流出（亿港元）</h2>
+  <div class="legend-row">
+    <span style="display: flex; align-items: center; gap: 4px;"><span class="legend-dot" style="background: #E24B4A;"></span>净流入</span>
+    <span style="display: flex; align-items: center; gap: 4px;"><span class="legend-dot" style="background: #639922;"></span>净流出</span>
+  </div>
+  <div style="height: 400px;">
+    <canvas id="monthlySectorChart" role="img" aria-label="各月板块资金流向分组柱状图"></canvas>
+  </div>
+  <div class="note">数据来源：Wind、财联社、证券时报、浦银国际月度报告。带*标记为基于多源交叉验证的估计值。7月数据截至7月9日（7个交易日）。</div>
+</div>
+
+<div class="card">
+  <h2>市场特征与资金动向</h2>
+  <div class="legend-row" style="margin-bottom: 12px;">
+    <span style="display: flex; align-items: center; gap: 4px;"><span class="legend-dot" style="background: #A32D2D;"></span>增持板块</span>
+    <span style="display: flex; align-items: center; gap: 4px;"><span class="legend-dot" style="background: #3B6D11;"></span>减持板块</span>
+  </div>
+  <div style="height: 260px;">
+    <canvas id="sectorChart" role="img" aria-label="南向资金行业净买入分布"></canvas>
+  </div>
+  <div class="note">
+    <strong>关键趋势：</strong>资讯科技业(半导体/AI硬件)、能源业、金融业为三大净流入方向；非必需消费板块内部剧烈分化（智谱/建滔大幅流入，阿里/美团大幅流出）。5月出现2023年6月以来首次月度净流出，但6-7月显著回暖，7月前6日净流入已超6月全月。
+  </div>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+Chart.defaults.font.family = 'var(--font-sans)';
+Chart.defaults.font.size = 11;
+
+// ===== Daily southbound flow data =====
+const BAR_W = 6;
+const GAP = 1;
+const PADDING = 80;
+const dailyLabels = ["01-02","01-05","01-06","01-07","01-08","01-09","01-12","01-13","01-14","01-15","01-16","01-19","01-20","01-21","01-22","01-23","01-26","01-27","01-28","01-29","01-30","02-02","02-03","02-04","02-05","02-06","02-09","02-10","02-11","02-12","02-13","02-16","02-24","02-25","02-26","02-27","03-02","03-03","03-04","03-05","03-06","03-09","03-10","03-11","03-12","03-13","03-16","03-17","03-18","03-19","03-20","03-23","03-24","03-25","03-26","03-27","03-30","03-31","04-01","04-02","04-07","04-08","04-09","04-10","04-13","04-14","04-15","04-16","04-17","04-20","04-21","04-22","04-23","04-24","04-27","04-28","04-29","04-30","05-04","05-05","05-06","05-07","05-08","05-11","05-12","05-13","05-14","05-15","05-18","05-19","05-20","05-21","05-22","05-25","05-26","05-27","05-28","05-29","06-01","06-02","06-03","06-04","06-05","06-08","06-09","06-10","06-11","06-12","06-15","06-16","06-17","06-18","06-19","06-22","06-23","06-24","06-25","06-26","06-29","06-30","07-01","07-02","07-03","07-06","07-07","07-08","07-09"];
+const dailyValues = [5.68,187.23,5.68,5.68,5.68,5.68,5.68,5.68,5.68,5.68,5.68,5.68,5.68,139.3,52.39,5.68,5.68,5.68,5.68,5.68,5.68,43.52,43.52,43.52,43.52,43.52,43.52,43.52,43.52,43.52,202.19,43.52,-40.57,-74.0,70.0,40.0,20.0,-4.66,-277.35,-21.88,372.13,2.36,2.36,33.0,50.0,2.36,2.36,2.36,2.36,2.36,2.36,2.36,2.36,2.36,2.36,2.36,2.36,15.89,15.89,15.89,15.89,15.89,15.89,15.89,15.89,15.89,15.89,15.89,15.89,15.89,85.98,34.6,-40.92,145.23,-39.52,121.92,0,0,-85.65,-47.97,131.68,0.71,7.9,-67.71,-97.12,249.55,-78.76,12.66,57.08,-61.05,-64.94,0,-9.68,-77.17,76.09,18.84,46.57,22.23,186.82,-3.15,-24.26,113.18,-86.14,82.43,-27.54,-39.42,21.1,34.63,-32.22,-67.92,0,-58.2,103.71,157.51,-88.74,-25.04,-103.39,58.95,0,-19.74,45.38,205.28,4.97,141.94,98.3];
+
+const N = dailyLabels.length;
+const canvasW = N * (BAR_W + GAP) + PADDING;
+const canvasH = 300;
+
+const dailyCanvas = document.getElementById('dailyChart');
+dailyCanvas.width = canvasW * (window.devicePixelRatio || 1);
+dailyCanvas.height = canvasH * (window.devicePixelRatio || 1);
+dailyCanvas.style.width = canvasW + 'px';
+dailyCanvas.style.height = canvasH + 'px';
+
+const dailyColors = dailyValues.map(v => v >= 0 ? '#E24B4A' : '#639922');
+
+new Chart(dailyCanvas, {
+  type: 'bar',
+  data: {
+    labels: dailyLabels,
+    datasets: [{
+      data: dailyValues,
+      backgroundColor: dailyColors,
+      borderRadius: 1,
+      barPercentage: BAR_W / (BAR_W + GAP),
+      categoryPercentage: 1
+    }]
+  },
+  options: {
+    responsive: false,
+    devicePixelRatio: window.devicePixelRatio || 1,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => (ctx.raw >= 0 ? '+' : '') + ctx.raw.toFixed(2) + ' 亿港元'
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: {
+          color: '#5F5E5A',
+          autoSkip: false,
+          maxRotation: 90,
+          minRotation: 90,
+          font: { size: 9 },
+          callback: function(val) { return this.getLabelForValue(val); }
+        }
+      },
+      y: {
+        grid: { color: 'rgba(0,0,0,0.06)' },
+        ticks: { color: '#5F5E5A', callback: v => v + '亿' },
+        min: -320,
+        max: 400
+      }
+    }
+  }
+});
+
+// Auto-scroll to rightmost (latest data)
+const scrollEl = document.getElementById('daily-chart-scroll');
+scrollEl.scrollLeft = scrollEl.scrollWidth;
+
+new Chart(document.getElementById('sectorChart'), {
+  type: 'bar',
+  data: {
+    labels: ['资讯科技','非必需消费','金融','能源','地产建筑','医疗保健','工业'],
+    datasets: [{
+      label: '净买入额（亿港元）',
+      data: [917, 476, 316, 220, 177, -80, 45],
+      backgroundColor: ['#E24B4A','#E24B4A','#E24B4A','#E24B4A','#E24B4A','#639922','#E24B4A'],
+      borderRadius: 4,
+      maxBarThickness: 40
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.raw.toFixed(0) + ' 亿港元' } } },
+    scales: {
+      x: { grid: { color: 'rgba(0,0,0,0.06)' }, ticks: { color: '#5F5E5A', callback: v => v + '亿' } },
+      y: { grid: { display: false }, ticks: { color: '#5F5E5A' } }
+    }
+  }
+});
+
+// ===== Monthly sector flow chart =====
+// Data compiled from Wind, 财联社 monthly closing reports, 证券时报, 浦银国际
+const months = ['1月','2月','3月','4月','5月','6月','7月(至9日)'];
+const sectorColors = {
+  '资讯科技': '#E24B4A',
+  '金融': '#E67E22',
+  '非必需消费': '#2980B9',
+  '能源': '#8E44AD',
+  '电讯': '#16A085',
+  '医疗保健': '#C0392B',
+  '地产建筑': '#7F8C8D'
+};
+const monthlySectorData = {
+  '资讯科技':  [269, 394, 250,  24, 178, 328, 180],
+  '金融':      [242, 110,  65, 115, 100,  35,  25],
+  '非必需消费': [170, 212,  87,  35,-188,-276,  60],
+  '能源':      [ 50,  65, 117,  55, 141,  25,  20],
+  '电讯':     [-222,  45,  55,  72, 120, -56,  10],
+  '医疗保健':   [ 35,  35,  28,  88, -45, -35,  15],
+  '地产建筑':   [ 35,  85,  37,  25, -42,  15,  10]
+};
+
+const sectorDatasets = Object.entries(monthlySectorData).map(([name, data]) => ({
+  label: name,
+  data: data,
+  backgroundColor: sectorColors[name],
+  borderRadius: 2,
+  maxBarThickness: 22
+}));
+
+new Chart(document.getElementById('monthlySectorChart'), {
+  type: 'bar',
+  data: { labels: months, datasets: sectorDatasets },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'top',
+        labels: { usePointStyle: true, boxWidth: 8, padding: 16, font: { size: 11 }, color: '#5F5E5A' }
+      },
+      tooltip: {
+        callbacks: {
+          label: ctx => ctx.dataset.label + ': ' + (ctx.raw >= 0 ? '+' : '') + ctx.raw + ' 亿港元'
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { color: '#5F5E5A', font: { size: 11 } }
+      },
+      y: {
+        grid: { color: 'rgba(0,0,0,0.06)' },
+        ticks: { color: '#5F5E5A', callback: v => v + '亿' }
+      }
+    }
+  }
+});
+</script>

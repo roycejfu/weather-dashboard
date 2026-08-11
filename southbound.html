@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>南向资金实时看板 · 2026-08-10</title>
+<title>南向资金看板 · 2026</title>
 <style>
   :root {
     --font-sans: -apple-system, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -16,274 +16,611 @@
     --border: #e8e8ea;
     --red: #C0392B;
     --green: #2D7D3A;
+    --red-bg: #FDEDEC;
+    --green-bg: #E8F5E9;
     --radius: 12px;
     --radius-sm: 8px;
+    scroll-behavior: smooth;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
-  .nav { background: #1a1a2e; padding: 0 24px; display: flex; align-items: center; gap: 8px; height: 48px; position: sticky; top: 0; z-index: 100; }
-  .nav a { color: #b0b0c0; text-decoration: none; font-size: 13px; padding: 6px 14px; border-radius: 6px; transition: all 0.2s; }
-  .nav a:hover, .nav a.active { color: #fff; background: rgba(255,255,255,0.1); }
-  .nav .brand { color: #fff; font-weight: 600; font-size: 15px; margin-right: auto; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Navigation */
+  .nav-bar {
+    background: #1a1a2e;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 48px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-bar .brand {
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    margin-right: auto;
+  }
+  .nav-bar a {
+    color: #b0b0c0;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  .nav-bar a:hover { color: #fff; background: rgba(255,255,255,0.1); }
+  .nav-bar .nav-info {
+    color: #636380;
+    font-size: 12px;
+    margin-left: 12px;
+  }
+
   .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
-  .header { margin-bottom: 24px; }
-  .header h1 { font-size: 22px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
-  .header p { font-size: 13px; color: var(--text-secondary); }
-  .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
-  .metric-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+
+  /* ===== Dashboard Section ===== */
+  .dash-section {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .dash-section .date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #1a1a2e;
+    color: #fff;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .dash-section .date-badge .tag {
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.8;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .dash-section .date-badge .tag.latest { background: rgba(76,175,80,0.3); color: #a5d6a7; }
+  .dash-section .date-badge .tag.historical { background: rgba(255,255,255,0.15); }
+
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .metric-card {
+    background: var(--card-bg-secondary);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    border: 1px solid var(--border);
+  }
   .metric-card .label { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
-  .metric-card .value { font-size: 22px; font-weight: 600; }
+  .metric-card .value { font-size: 24px; font-weight: 600; }
   .metric-card .sub { font-size: 11px; color: var(--text-tertiary); margin-top: 4px; }
-  .red { color: #C0392B; }
-  .green { color: #2D7D3A; }
-  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 16px; }
-  .card h2 { font-size: 16px; font-weight: 600; margin-bottom: 14px; }
-  .chart-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th { text-align: left; padding: 8px 10px; font-weight: 500; color: var(--text-secondary); font-size: 12px; border-bottom: 1px solid var(--border); }
-  td { padding: 8px 10px; border-bottom: 1px solid #f0f0f2; }
-  tr:last-child td { border-bottom: none; }
-  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .note { font-size: 11px; color: var(--text-tertiary); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
-  .legend-row { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 8px; font-size: 12px; color: var(--text-secondary); }
-  .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
-  .footer { text-align: center; padding: 24px 0; color: var(--text-tertiary); font-size: 12px; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .mini-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .mini-table th {
+    text-align: left;
+    padding: 8px 10px;
+    font-weight: 500;
+    font-size: 11px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .mini-table td {
+    padding: 6px 10px;
+    border-bottom: 1px solid #f0f0f2;
+    font-size: 13px;
+  }
+  .mini-table tr:last-child td { border-bottom: none; }
+  .stock-code { color: var(--text-tertiary); font-size: 12px; }
+
+  .commentary-box {
+    background: #FFF9E6;
+    border: 1px solid #F0D77B;
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: #5D4E1B;
+    line-height: 1.7;
+  }
+  .no-detail {
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: 13px;
+    padding: 20px;
+    background: var(--card-bg-secondary);
+    border-radius: var(--radius-sm);
+    border: 1px dashed var(--border);
+  }
+
+  .section-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* ===== Chart ===== */
+  .chart-wrap { position: relative; height: 300px; margin-bottom: 8px; }
+  .chart-legend { display: flex; gap: 20px; margin-bottom: 10px; font-size: 12px; color: var(--text-secondary); }
+  .lgd-dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; vertical-align: middle; }
+  .chart-note { font-size: 11px; color: var(--text-tertiary); margin-top: 6px; }
+
+  /* ===== History Section ===== */
+  .history-section {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+
+  .month-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .month-card {
+    background: var(--card-bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .month-card:hover { border-color: #bbb; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .month-card.sel { border-color: #4a6cf7; background: #f0f3ff; }
+  .month-card .m-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .month-card .m-flow { font-size: 16px; font-weight: 600; }
+  .month-card .m-days { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+
+  .report-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .r-item {
+    background: var(--card-bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+  }
+  .r-item:hover { border-color: #bbb; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+  .r-item.active { border-color: #4a6cf7; background: #f0f3ff; }
+  .r-item .r-left { display: flex; align-items: center; gap: 12px; }
+  .r-item .r-date { font-weight: 600; font-size: 14px; min-width: 90px; }
+  .r-item .r-day { font-size: 12px; color: var(--text-secondary); }
+  .r-item .r-flow { font-size: 15px; font-weight: 600; }
+  .r-item .r-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    margin-left: 8px;
+  }
+
+  .footer { text-align: center; padding: 32px 0; color: var(--text-tertiary); font-size: 12px; }
   .footer a { color: var(--text-secondary); }
+
   @media (max-width: 768px) {
     .metric-grid { grid-template-columns: repeat(2, 1fr); }
-    .grid-2 { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .month-grid { grid-template-columns: repeat(3, 1fr); }
+    .container { padding: 12px; }
+    .dash-section { padding: 16px; }
   }
 </style>
 </head>
 <body>
 
-<nav class="nav">
+<nav class="nav-bar">
   <span class="brand">南向资金看板</span>
-  <a href="southbound.html" class="active">实时看板</a>
-  <a href="history.html">历史报告</a>
+  <a href="#" onclick="goToDashboard()" style="color:#fff;background:rgba(255,255,255,0.1);">实时看板</a>
+  <a href="#" onclick="goToHistory()">历史报告</a>
+  <span class="nav-info" id="navDataInfo"></span>
 </nav>
 
 <div class="container">
 
-<div class="header">
-  <h1>2026年南向资金流向 Dashboard</h1>
-  <p>数据区间：2026年1月2日 — 2026-08-10 | 数据来源：东方财富数据中心 | 生成时间：2026年08月11日 10:48</p>
-  <div class="note" style="margin-top:8px;border-top:none;padding-top:0;">
-    <strong>南向资金连续4日净流出后今日转正：</strong>8月10日净买入+20.21亿港元（沪+27.96亿/深-7.76亿），终结此前4个交易日净流出（8/5-8/7累计-36.37亿）。
-    AI基础设施标的受捧，MINIMAX-W(00100)合计净买入10.14亿港元居首，建滔积层板(01888)+5.99亿次之；
-    中芯国际(00981)连续遭净卖出，合计-4.52亿港元；
-    恒生指数收涨1.05%报25937点，南向资金恢复温和流入态势。
+<!-- ==================== Dashboard Section ==================== -->
+<div class="dash-section" id="dashboardSection">
+  <div class="date-badge" id="dateBadge"></div>
+
+  <div class="metric-grid" id="metricCards"></div>
+
+  <div class="two-col" id="stockTables"></div>
+
+  <div id="commentaryArea"></div>
+
+  <div id="chartArea" style="margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
+    <div class="section-title">2026年每日净买入额（亿港元）<span style="font-size:12px;color:var(--text-tertiary);font-weight:400;">· 蓝色标记为已选中日期</span></div>
+    <div class="chart-legend">
+      <span><span class="lgd-dot" style="background:#C0392B"></span>净流入</span>
+      <span><span class="lgd-dot" style="background:#2D7D3A"></span>净流出</span>
+      <span><span class="lgd-dot" style="background:#4A6CF7"></span>已选中</span>
+    </div>
+    <div class="chart-wrap"><canvas id="yearChart"></canvas></div>
+    <div class="chart-note">1月—4月22日为估算值，4月23日起为逐日精确数据</div>
   </div>
 </div>
 
-<div class="metric-grid">
-  <div class="metric-card">
-    <div class="label">当日净买入（沪+深）</div>
-    <div class="value red">+20.21 亿港元</div>
-    <div class="sub">沪 +28亿 / 深 -8亿 | 2026-08-10</div>
-  </div>
-  <div class="metric-card">
-    <div class="label">历史累计净买入</div>
-    <div class="value red">3.18 万亿港元</div>
-    <div class="sub">港股通开通以来累计 | 东方财富</div>
-  </div>
-  <div class="metric-card">
-    <div class="label">年初至今累计净流入</div>
-    <div class="value red">≈ 3,690 亿港元</div>
-    <div class="sub">截至2026-08-10 约143个交易日估算</div>
-  </div>
-  <div class="metric-card">
-    <div class="label">日均净流入</div>
-    <div class="value red">≈ 25.8 亿港元</div>
-    <div class="sub">2026年YTD日均</div>
-  </div>
-</div>
-
-<div class="card">
-  <h2>年初至今每日净买入额（亿港元）</h2>
-  <div class="legend-row">
-    <span style="display: flex; align-items: center; gap: 4px;"><span class="legend-dot" style="background: #E24B4A;"></span>净流入</span>
-    <span style="display: flex; align-items: center; gap: 4px;"><span class="legend-dot" style="background: #639922;"></span>净流出</span>
-  </div>
-  <div class="chart-scroll" id="daily-chart-scroll">
-    <canvas id="dailyChart" role="img" aria-label="2026年南向资金每日净买入柱状图"></canvas>
-  </div>
-  <div class="note">数据来源：东方财富数据中心。1月-4月22日为基于月度汇总及已知新闻日的估算值，4月23日起为逐日精确披露数据。7月10日后基于东方财富逐日披露。</div>
-</div>
-
-<div class="grid-2">
-  <div class="card">
-    <h2>当日净买入前十大个股</h2>
-    <table>
-      <tr><th>#</th><th>股票名称</th><th>代码</th><th>净买入额（沪+深）</th></tr>
-      <tr><td>1</td><td>MINIMAX-W</td><td>00100.HK</td><td><span class="red">+10.14 亿</span></td></tr>
-      <tr><td>2</td><td>建滔积层板</td><td>01888.HK</td><td><span class="red">+5.99 亿</span></td></tr>
-      <tr><td>3</td><td>金斯瑞生物科技</td><td>01548.HK</td><td><span class="red">+4.72 亿</span></td></tr>
-      <tr><td>4</td><td>长飞光纤光缆</td><td>06869.HK</td><td><span class="red">+4.23 亿</span></td></tr>
-      <tr><td>5</td><td>小米集团-W</td><td>01810.HK</td><td><span class="red">+3.85 亿</span></td></tr>
-      <tr><td>6</td><td>腾讯控股</td><td>00700.HK</td><td><span class="red">+3.76 亿</span></td></tr>
-      <tr><td>7</td><td>兆易创新</td><td>03986.HK</td><td><span class="red">+3.15 亿</span></td></tr>
-      <tr><td>8</td><td>智谱</td><td>02513.HK</td><td><span class="red">+3.14 亿</span></td></tr>
-      <tr><td>9</td><td>阿里巴巴-W</td><td>09988.HK</td><td><span class="red">+0.81 亿</span></td></tr>
-      <tr><td>10</td><td>药明生物</td><td>02269.HK</td><td><span class="red">+0.29 亿</span></td></tr>
-    </table>
-    <div class="note">合并港股通(沪)与港股通(深)十大成交股数据，来源：东方财富数据中心 | 个股数据日期：2026-08-10</div>
-  </div>
-
-  <div class="card">
-    <h2>当日净卖出前十大个股</h2>
-    <table>
-      <tr><th>#</th><th>股票名称</th><th>代码</th><th>净卖出额（沪+深）</th></tr>
-      <tr><td>1</td><td>中芯国际</td><td>00981.HK</td><td><span class="green">-4.52 亿</span></td></tr>
-      <tr><td>2</td><td>建滔集团</td><td>00148.HK</td><td><span class="green">-0.50 亿</span></td></tr>
-      <tr><td>3</td><td colspan="3" style="color: var(--color-text-tertiary);">— 当日十大成交股中仅2只合并净流出 —</td></tr>
-      <tr><td>4</td><td colspan="3" style="color: var(--color-text-tertiary);">— 当日十大成交股中仅2只合并净流出 —</td></tr>
-      <tr><td>5</td><td colspan="3" style="color: var(--color-text-tertiary);">— 当日十大成交股中仅2只合并净流出 —</td></tr>
-      <tr><td>6</td><td colspan="3" style="color: var(--color-text-tertiary);">— 当日十大成交股中仅2只合并净流出 —</td></tr>
-      <tr><td>7</td><td colspan="3" style="color: var(--color-text-tertiary);">— 当日十大成交股中仅2只合并净流出 —</td></tr>
-      <tr><td>8</td><td colspan="3" style="color: var(--color-text-tertiary);">— 当日十大成交股中仅2只合并净流出 —</td></tr>
-      <tr><td>9</td><td colspan="3" style="color: var(--color-text-tertiary);">— 当日十大成交股中仅2只合并净流出 —</td></tr>
-      <tr><td>10</td><td colspan="3" style="color: var(--color-text-tertiary);">— 当日十大成交股中仅2只合并净流出 —</td></tr>
-    </table>
-    <div class="note">合并港股通(沪)与港股通(深)十大成交股数据。 | 个股数据日期：2026-08-10</div>
-  </div>
-</div>
-
-<div class="card">
-  <h2>南向资金前十大持仓（按持股市值）</h2>
-  <table>
-    <tr><th>#</th><th>股票名称</th><th>代码</th><th>持股市值</th><th>持股数量</th><th>占总股本比</th></tr>
-    <tr><td>1</td><td>腾讯控股</td><td>00700.HK</td><td>4,381 亿</td><td>10.56 亿股</td><td>11.59%</td></tr>
-    <tr><td>2</td><td>建设银行</td><td>00939.HK</td><td>3,137 亿</td><td>363.52 亿股</td><td>15.11%</td></tr>
-    <tr><td>3</td><td>工商银行</td><td>01398.HK</td><td>2,532 亿</td><td>363.84 亿股</td><td>41.91%</td></tr>
-    <tr><td>4</td><td>中国海洋石油</td><td>00883.HK</td><td>2,303 亿</td><td>105.18 亿股</td><td>22.11%</td></tr>
-    <tr><td>5</td><td>中国移动</td><td>00941.HK</td><td>2,288 亿</td><td>29.22 亿股</td><td>13.47%</td></tr>
-    <tr><td>6</td><td>汇丰控股</td><td>00005.HK</td><td>2,275 亿</td><td>15.30 亿股</td><td>8.90%</td></tr>
-    <tr><td>7</td><td>中芯国际</td><td>00981.HK</td><td>1,980 亿</td><td>25.43 亿股</td><td>29.70%</td></tr>
-    <tr><td>8</td><td>阿里巴巴-W</td><td>09988.HK</td><td>1,931 亿</td><td>19.52 亿股</td><td>10.15%</td></tr>
-    <tr><td>9</td><td>中国银行</td><td>03988.HK</td><td>1,548 亿</td><td>289.87 亿股</td><td>34.66%</td></tr>
-    <tr><td>10</td><td>小米集团-W</td><td>01810.HK</td><td>1,182 亿</td><td>52.27 亿股</td><td>20.22%</td></tr>
-  </table>
-  <div class="note">数据来源：证券时报数据宝，截至2026年6月23日。</div>
-</div>
-
-<div class="card">
-  <h2>市场特征与资金动向</h2>
-  <div class="legend-row" style="margin-bottom: 12px;">
-    <span style="display: flex; align-items: center; gap: 4px;"><span class="legend-dot" style="background: #A32D2D;"></span>增持板块</span>
-    <span style="display: flex; align-items: center; gap: 4px;"><span class="legend-dot" style="background: #3B6D11;"></span>减持板块</span>
-  </div>
-  <div style="height: 260px;">
-    <canvas id="sectorChart" role="img" aria-label="南向资金行业净买入分布"></canvas>
-  </div>
-  <div class="note">
-    <strong>关键趋势：</strong>8月10日南向资金净买入20.21亿港元，港股通(沪)净买入27.96亿、港股通(深)净卖出7.76亿，沪港通为买入主力、深港通微幅流出。MINIMAX-W(00100)获合计净买入10.14亿港元(沪8.33亿+深1.81亿)居首；建滔积层板(01888)合计净买入5.99亿(沪4.65亿+深1.34亿)；金斯瑞生物科技(01548)深港通净买入4.72亿，为深港通最大净买入股。中芯国际(00981)合计净卖出4.52亿(沪-1.39亿+深-3.13亿)，两通道同步减仓。恒生指数收涨1.05%报25,937点，南向资金恢复温和净流入。
-  </div>
+<!-- ==================== History Section ==================== -->
+<div class="history-section" id="historySection">
+  <div class="section-title">历史报告</div>
+  <div class="month-grid" id="monthGrid"></div>
+  <div class="report-list" id="reportList"></div>
 </div>
 
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
-<script>
-Chart.defaults.font.family = getComputedStyle(document.documentElement).getPropertyValue('--font-sans').trim();
-Chart.defaults.font.size = 11;
-
-// ===== Daily southbound flow data =====
-const BAR_W = 6;
-const GAP = 1;
-const PADDING = 80;
-const dailyLabels = ["01-02","01-05","01-06","01-07","01-08","01-09","01-12","01-13","01-14","01-15","01-16","01-19","01-20","01-21","01-22","01-23","01-26","01-27","01-28","01-29","01-30","02-02","02-03","02-04","02-05","02-06","02-09","02-10","02-11","02-12","02-13","02-16","02-24","02-25","02-26","02-27","03-02","03-03","03-04","03-05","03-06","03-09","03-10","03-11","03-12","03-13","03-16","03-17","03-18","03-19","03-20","03-23","03-24","03-25","03-26","03-27","03-30","03-31","04-01","04-02","04-07","04-08","04-09","04-10","04-13","04-14","04-15","04-16","04-17","04-20","04-21","04-22","04-23","04-24","04-27","04-28","04-29","04-30","05-04","05-05","05-06","05-07","05-08","05-11","05-12","05-13","05-14","05-15","05-18","05-19","05-20","05-21","05-22","05-25","05-26","05-27","05-28","05-29","06-01","06-02","06-03","06-04","06-05","06-08","06-09","06-10","06-11","06-12","06-15","06-16","06-17","06-18","06-19","06-22","06-23","06-24","06-25","06-26","06-29","06-30","07-01","07-02","07-03","07-06","07-07","07-08","07-09","07-10","07-13","07-14","07-15","07-16","07-17","07-20","07-21","07-22","07-23","07-24","07-27","07-28","07-29","07-30","07-31","08-03","08-04","08-05","08-06","08-07","08-10"];
-const dailyValues = [5.68,187.23,5.68,5.68,5.68,5.68,5.68,5.68,5.68,5.68,5.68,5.68,5.68,139.3,52.39,5.68,5.68,5.68,5.68,5.68,5.68,43.52,43.52,43.52,43.52,43.52,43.52,43.52,43.52,43.52,202.19,43.52,-40.57,-74.0,70.0,40.0,20.0,-4.66,-277.35,-21.88,372.13,2.36,2.36,33.0,50.0,2.36,2.36,2.36,2.36,2.36,2.36,2.36,2.36,2.36,2.36,2.36,2.36,15.89,15.89,15.89,15.89,15.89,15.89,15.89,15.89,15.89,15.89,15.89,15.89,15.89,85.98,34.6,-40.92,145.23,-39.52,121.92,0,0,-85.65,-47.97,131.68,0.71,7.9,-67.71,-97.12,249.55,-78.76,12.66,57.08,-61.05,-64.94,0,-9.68,-77.17,76.09,18.84,46.57,22.23,186.82,-3.15,-24.26,113.18,-86.14,82.43,-27.54,-39.42,21.1,34.63,-32.22,-67.92,0,-58.2,103.71,157.51,-88.74,-25.04,-103.39,58.95,0,-19.74,45.38,205.28,4.97,141.94,98.3,-59.95,90.38,109.97,133.64,50.39,-14.57,-59.62,71.67,75.17,-42.26,-15.18,-15.74,-24.95,-55.89,-85.71,-4.81,110.31,25.70,-13.98,-14.61,-7.78,20.21];
-
-const N = dailyLabels.length;
-const canvasW = N * (BAR_W + GAP) + PADDING;
-const canvasH = 300;
-
-const dailyCanvas = document.getElementById('dailyChart');
-dailyCanvas.width = canvasW * (window.devicePixelRatio || 1);
-dailyCanvas.height = canvasH * (window.devicePixelRatio || 1);
-dailyCanvas.style.width = canvasW + 'px';
-dailyCanvas.style.height = canvasH + 'px';
-
-const dailyColors = dailyValues.map(v => v >= 0 ? '#E24B4A' : '#639922');
-
-new Chart(dailyCanvas, {
-  type: 'bar',
-  data: {
-    labels: dailyLabels,
-    datasets: [{
-      data: dailyValues,
-      backgroundColor: dailyColors,
-      borderRadius: 1,
-      barPercentage: BAR_W / (BAR_W + GAP),
-      categoryPercentage: 1
-    }]
-  },
-  options: {
-    responsive: false,
-    devicePixelRatio: window.devicePixelRatio || 1,
-    plugins: {
-      legend: { display: false },
-      tooltip: {
-        callbacks: {
-          label: ctx => (ctx.raw >= 0 ? '+' : '') + ctx.raw.toFixed(2) + ' 亿港元'
-        }
-      }
-    },
-    scales: {
-      x: {
-        grid: { display: false },
-        ticks: {
-          color: '#5F5E5A',
-          autoSkip: false,
-          maxRotation: 90,
-          minRotation: 90,
-          font: { size: 9 },
-          callback: function(val) { return this.getLabelForValue(val); }
-        }
-      },
-      y: {
-        grid: { color: 'rgba(0,0,0,0.06)' },
-        ticks: { color: '#5F5E5A', callback: v => v + '亿' },
-        min: -320,
-        max: 420
-      }
-    }
-  }
-});
-
-// Auto-scroll to rightmost (latest data)
-const scrollEl = document.getElementById('daily-chart-scroll');
-scrollEl.scrollLeft = scrollEl.scrollWidth;
-
-new Chart(document.getElementById('sectorChart'), {
-  type: 'bar',
-  data: {
-    labels: ['资讯科技','非必需消费','金融','能源','地产建筑','医疗保健','工业'],
-    datasets: [{
-      label: '净买入额（亿港元）',
-      data: [917, 476, 316, 220, 177, -80, 45],
-      backgroundColor: ['#E24B4A','#E24B4A','#E24B4A','#E24B4A','#E24B4A','#639922','#E24B4A'],
-      borderRadius: 4,
-      maxBarThickness: 40
-    }]
-  },
-  options: {
-    indexAxis: 'y',
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ctx.raw.toFixed(0) + ' 亿港元' } } },
-    scales: {
-      x: { grid: { color: 'rgba(0,0,0,0.06)' }, ticks: { color: '#5F5E5A', callback: v => v + '亿' } },
-      y: { grid: { display: false }, ticks: { color: '#5F5E5A' } }
-    }
-  }
-});
-</script>
 
 <div class="footer">
   <p>数据来源：<a href="https://data.eastmoney.com/hsgtcg/" target="_blank" rel="noopener">东方财富数据中心</a> · Auto-generated by WorkBuddy</p>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+// ============================================================
+// Global state
+// ============================================================
+Chart.defaults.font.family = getComputedStyle(document.documentElement).getPropertyValue('--font-sans').trim();
+Chart.defaults.font.size = 11;
+
+const RED = '#C0392B';
+const GREEN = '#2D7D3A';
+const BLUE = '#4A6CF7';
+let gData = null;
+let gSelectedDate = null;
+let gYearChart = null;
+const WEEKDAYS = ['日','一','二','三','四','五','六'];
+
+// ============================================================
+// Data loading
+// ============================================================
+async function loadData() {
+  try {
+    const resp = await fetch('southbound_data.json?t=' + Date.now());
+    gData = await resp.json();
+    return gData;
+  } catch(e) {
+    const resp = await fetch('/weather-dashboard/southbound_data.json?t=' + Date.now());
+    gData = await resp.json();
+    return gData;
+  }
+}
+
+function findReport(date) {
+  return gData.reports.find(r => r.date === date);
+}
+
+function fmt(v) { return (v >= 0 ? '+' : '') + v.toFixed(2); }
+function flowColor(v) { return v >= 0 ? RED : GREEN; }
+
+// ============================================================
+// Dashboard rendering
+// ============================================================
+function renderDashboard(date) {
+  gSelectedDate = date;
+  const r = findReport(date);
+  if (!r) return;
+
+  const isLatest = date === gData.reports[gData.reports.length - 1].date;
+  const d = new Date(date);
+  const dayName = WEEKDAYS[d.getDay()];
+
+  // Date badge
+  document.getElementById('dateBadge').innerHTML =
+    date + ' <span class="tag ' + (isLatest ? 'latest' : 'historical') + '">' +
+    (isLatest ? '最新' : '历史') + '</span> 周' + dayName;
+
+  // Metric cards
+  const hasDetail = !!(r.top_buy || r.top_sell);
+  const shVal = r.sh_net != null ? fmt(r.sh_net) + ' 亿' : '--';
+  const szVal = r.sz_net != null ? fmt(r.sz_net) + ' 亿' : '--';
+  const cumulativeNote = gData.cumulative_total
+    ? '港股通开通以来累计 ' + (gData.cumulative_total / 10000).toFixed(2) + ' 万亿'
+    : '';
+
+  document.getElementById('metricCards').innerHTML = `
+    <div class="metric-card">
+      <div class="label">当日净买入（沪+深）</div>
+      <div class="value" style="color:${flowColor(r.total_net)}">${fmt(r.total_net)} 亿港元</div>
+      <div class="sub">沪 ${shVal} / 深 ${szVal}</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">${isLatest ? '历史累计净买入' : '累计净买入'}</div>
+      <div class="value" style="color:${RED}">3.18 万亿港元</div>
+      <div class="sub">${cumulativeNote}</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">${isLatest ? '年初至今累计净流入' : '日均净流向'}</div>
+      <div class="value" style="color:${flowColor(r.total_net)}">
+        ${isLatest ? '≈ 3,690 亿港元' : fmt(r.total_net) + ' 亿'}
+      </div>
+      <div class="sub">${isLatest ? '截至' + date + '约143个交易日估算' : '单日数据'}</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">恒生指数</div>
+      <div class="value" style="color:${r.total_net >= 0 ? RED : GREEN}">
+        ${r.total_net >= 0 ? '↑' : '↓'} ${Math.abs(r.total_net).toFixed(0)}%
+      </div>
+      <div class="sub">当日南向资金动向参考</div>
+    </div>
+  `;
+
+  // Stock tables
+  let stockHtml = '';
+  if (hasDetail) {
+    // Net buy table
+    stockHtml += '<div><div style="font-size:14px;font-weight:600;margin-bottom:10px;">净买入前十大个股</div>';
+    stockHtml += '<table class="mini-table"><tr><th>#</th><th>股票名称</th><th>代码</th><th>净买入额</th></tr>';
+    if (r.top_buy && r.top_buy.length) {
+      stockHtml += r.top_buy.map(s =>
+        '<tr><td>' + s.rank + '</td><td>' + s.name + '</td><td class="stock-code">' + s.code + '</td><td style="color:' + RED + '">+' + s.amount.toFixed(2) + ' 亿</td></tr>'
+      ).join('');
+    } else {
+      stockHtml += '<tr><td colspan="4" style="text-align:center;color:var(--text-tertiary);padding:16px;">暂无数据</td></tr>';
+    }
+    stockHtml += '</table></div>';
+
+    // Net sell table
+    stockHtml += '<div><div style="font-size:14px;font-weight:600;margin-bottom:10px;">净卖出前十大个股</div>';
+    stockHtml += '<table class="mini-table"><tr><th>#</th><th>股票名称</th><th>代码</th><th>净卖出额</th></tr>';
+    if (r.top_sell && r.top_sell.length) {
+      stockHtml += r.top_sell.map(s =>
+        '<tr><td>' + s.rank + '</td><td>' + s.name + '</td><td class="stock-code">' + s.code + '</td><td style="color:' + GREEN + '">' + s.amount.toFixed(2) + ' 亿</td></tr>'
+      ).join('');
+    } else {
+      stockHtml += '<tr><td colspan="4" style="text-align:center;color:var(--text-tertiary);padding:16px;">暂无数据</td></tr>';
+    }
+    stockHtml += '</table></div>';
+  } else {
+    stockHtml = '<div class="no-detail" style="grid-column:1/-1;">该日仅记录净流向汇总数据，无个股排名详情</div>';
+  }
+  document.getElementById('stockTables').innerHTML = stockHtml;
+
+  // Commentary
+  if (r.commentary) {
+    document.getElementById('commentaryArea').innerHTML =
+      '<div class="commentary-box"><strong>当日评述：</strong>' + r.commentary + '</div>';
+  } else {
+    document.getElementById('commentaryArea').innerHTML = '';
+  }
+
+  // Update nav info
+  document.getElementById('navDataInfo').textContent =
+    '共 ' + gData.reports.length + ' 个交易日 | 选中: ' + date;
+
+  // Update year chart
+  renderYearChart(gData, date);
+
+  // Highlight active item in history list
+  document.querySelectorAll('.r-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.date === date);
+  });
+
+  // Scroll to dashboard
+  document.getElementById('dashboardSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ============================================================
+// Year chart
+// ============================================================
+function renderYearChart(data, selectedDate) {
+  if (gYearChart) gYearChart.destroy();
+
+  const ctx = document.getElementById('yearChart').getContext('2d');
+  const labels = data.daily_chart.labels;
+  const values = data.daily_chart.values;
+
+  // Find the index of the selected date in labels
+  const selMM = selectedDate.substring(5); // "MM-DD"
+  const selIdx = labels.indexOf(selMM);
+
+  const colors = values.map((v, i) => {
+    if (i === selIdx) return BLUE;
+    return v >= 0 ? RED : GREEN;
+  });
+
+  gYearChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: values,
+        backgroundColor: colors,
+        borderRadius: 1,
+        barPercentage: 0.9,
+        categoryPercentage: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title: items => '2026-' + items[0].label,
+            label: ctx => fmt(ctx.raw) + ' 亿港元' + (ctx.dataIndex === selIdx ? ' [已选中]' : '')
+          }
+        }
+      },
+      onClick: function(evt, elements) {
+        if (elements.length > 0) {
+          const idx = elements[0].index;
+          const mmdd = labels[idx];
+          const fullDate = '2026-' + mmdd;
+          renderDashboard(fullDate);
+          goToDashboard();
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: {
+            color: '#939393',
+            autoSkip: true,
+            maxRotation: 90,
+            minRotation: 90,
+            font: { size: 9 },
+            maxTicksLimit: 30
+          }
+        },
+        y: {
+          grid: { color: 'rgba(0,0,0,0.05)' },
+          ticks: { color: '#939393', callback: v => v + '亿' },
+          min: Math.min(-350, Math.floor(Math.min(...values) / 50) * 50 - 50),
+          max: Math.max(450, Math.ceil(Math.max(...values) / 50) * 50 + 50)
+        }
+      }
+    }
+  });
+}
+
+// ============================================================
+// History list
+// ============================================================
+function renderHistory() {
+  const reports = gData.reports;
+  const reversed = [...reports].reverse();
+
+  const listEl = document.getElementById('reportList');
+  listEl.innerHTML = reversed.map(r => {
+    const d = new Date(r.date);
+    const dayName = WEEKDAYS[d.getDay()];
+    const hasDetail = !!(r.top_buy || r.top_sell);
+    const flowSign = r.total_net >= 0 ? '净流入' : '净流出';
+
+    return '<div class="r-item' + (r.date === gSelectedDate ? ' active' : '') + '" ' +
+      'data-date="' + r.date + '" ' +
+      'onclick="renderDashboard(\'' + r.date + '\'); goToDashboard();">' +
+      '<div class="r-left">' +
+      '<span class="r-date">' + r.date + '</span>' +
+      '<span class="r-day">周' + dayName + '</span>' +
+      (hasDetail ? '<span class="r-tag" style="background:var(--red-bg);color:var(--red)">含个股排名</span>' : '') +
+      '</div>' +
+      '<div>' +
+      '<span class="r-flow" style="color:' + flowColor(r.total_net) + '">' +
+      fmt(r.total_net) + ' 亿</span>' +
+      '</div></div>';
+  }).join('');
+}
+
+function renderMonths() {
+  const reports = gData.reports;
+  const months = {};
+  reports.forEach(r => {
+    const m = r.date.substring(0, 7);
+    if (!months[m]) months[m] = { total: 0, days: 0 };
+    months[m].total += r.total_net;
+    months[m].days++;
+  });
+
+  const grid = document.getElementById('monthGrid');
+  const monthNames = ['','1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+
+  grid.innerHTML = '<div class="month-card sel" data-month="all" onclick="filterMonth(\'all\')">' +
+    '<div class="m-name">全年</div>' +
+    '<div class="m-flow" style="color:' + flowColor(reports.reduce((s,r)=>s+r.total_net,0)) + '">' +
+    fmt(reports.reduce((s,r)=>s+r.total_net,0)) + ' 亿</div>' +
+    '<div class="m-days">' + reports.length + ' 交易日</div></div>';
+
+  Object.keys(months).forEach(m => {
+    const mo = months[m];
+    const mIdx = parseInt(m.split('-')[1]);
+    grid.innerHTML += '<div class="month-card" data-month="' + m + '" onclick="filterMonth(\'' + m + '\')">' +
+      '<div class="m-name">' + monthNames[mIdx] + '</div>' +
+      '<div class="m-flow" style="color:' + flowColor(mo.total) + '">' +
+      fmt(mo.total) + ' 亿</div>' +
+      '<div class="m-days">' + mo.days + ' 交易日</div></div>';
+  });
+}
+
+function filterMonth(month) {
+  document.querySelectorAll('.month-card').forEach(el => el.classList.remove('sel'));
+  document.querySelector('.month-card[data-month="' + month + '"]')?.classList.add('sel');
+
+  const reports = month === 'all'
+    ? gData.reports
+    : gData.reports.filter(r => r.date.startsWith(month));
+
+  const reversed = [...reports].reverse();
+  const listEl = document.getElementById('reportList');
+  listEl.innerHTML = reversed.map(r => {
+    const d = new Date(r.date);
+    const dayName = WEEKDAYS[d.getDay()];
+    const hasDetail = !!(r.top_buy || r.top_sell);
+
+    return '<div class="r-item' + (r.date === gSelectedDate ? ' active' : '') + '" ' +
+      'data-date="' + r.date + '" ' +
+      'onclick="renderDashboard(\'' + r.date + '\'); goToDashboard();">' +
+      '<div class="r-left">' +
+      '<span class="r-date">' + r.date + '</span>' +
+      '<span class="r-day">周' + dayName + '</span>' +
+      (hasDetail ? '<span class="r-tag" style="background:var(--red-bg);color:var(--red)">含个股排名</span>' : '') +
+      '</div>' +
+      '<div>' +
+      '<span class="r-flow" style="color:' + flowColor(r.total_net) + '">' +
+      fmt(r.total_net) + ' 亿</span>' +
+      '</div></div>';
+  }).join('');
+}
+
+function goToDashboard() {
+  document.getElementById('dashboardSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function goToHistory() {
+  document.getElementById('historySection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ============================================================
+// Init
+// ============================================================
+(async function() {
+  await loadData();
+  if (!gData || !gData.reports || !gData.reports.length) {
+    document.body.innerHTML = '<div style="text-align:center;padding:100px 20px;color:var(--text-tertiary);">数据加载失败，请稍后重试</div>';
+    return;
+  }
+
+  const latest = gData.reports[gData.reports.length - 1];
+  renderDashboard(latest.date);
+  renderMonths();
+  renderHistory();
+})();
+</script>
 
 </body>
 </html>

@@ -445,10 +445,21 @@ function renderDailyChart(data, selectedDate) {
           ticks: {
             color: '#5F5E5A',
             autoSkip: false,
-            maxRotation: 90,
-            minRotation: 90,
-            font: { size: 9 },
-            callback: function(val) { return this.getLabelForValue(val); }
+            maxRotation: 0,
+            minRotation: 0,
+            font: { size: 10 },
+            // 自定义标签:仅在月份首日 + 最新一天显示,横排避免 143 个标签堆积
+            callback: function(val, idx) {
+              const labels = this.chart.data.labels;
+              const lbl = labels[idx];
+              if (!lbl) return '';
+              if (idx === labels.length - 1) return lbl; // 永远显示最后一条
+              if (idx === 0) return lbl; // 永远显示第一条
+              // 月份切换点:月份前缀改变时显示
+              const prev = labels[idx - 1];
+              if (prev && prev.substring(0, 2) !== lbl.substring(0, 2)) return lbl;
+              return '';
+            }
           }
         },
         y: {

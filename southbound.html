@@ -1,41 +1,73 @@
-<h2 class="sr-only">2026年南向资金流向Dashboard — 截至8月10日累计净流入约3.18万亿港元</h2>
-
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>南向资金实时看板 · 2026-08-10</title>
 <style>
+  :root {
+    --font-sans: -apple-system, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+    --bg: #f5f7fa;
+    --card-bg: #ffffff;
+    --card-bg-secondary: #fafafa;
+    --text: #1a1a1a;
+    --text-secondary: #636363;
+    --text-tertiary: #939393;
+    --border: #e8e8ea;
+    --red: #C0392B;
+    --green: #2D7D3A;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: var(--font-sans); background: var(--color-background-tertiary); color: var(--color-text-primary); padding: 24px; line-height: 1.6; }
-  .container { max-width: 1200px; margin: 0 auto; }
+  body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+  .nav { background: #1a1a2e; padding: 0 24px; display: flex; align-items: center; gap: 8px; height: 48px; position: sticky; top: 0; z-index: 100; }
+  .nav a { color: #b0b0c0; text-decoration: none; font-size: 13px; padding: 6px 14px; border-radius: 6px; transition: all 0.2s; }
+  .nav a:hover, .nav a.active { color: #fff; background: rgba(255,255,255,0.1); }
+  .nav .brand { color: #fff; font-weight: 600; font-size: 15px; margin-right: auto; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
   .header { margin-bottom: 24px; }
-  .header h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
-  .header p { font-size: 13px; color: var(--color-text-secondary); }
+  .header h1 { font-size: 22px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+  .header p { font-size: 13px; color: var(--text-secondary); }
   .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
-  .metric-card { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 14px 16px; }
-  .metric-card .label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px; }
-  .metric-card .value { font-size: 22px; font-weight: 500; }
-  .metric-card .sub { font-size: 11px; color: var(--color-text-tertiary); margin-top: 2px; }
-  .red { color: #A32D2D; }
-  .green { color: #3B6D11; }
-  .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 20px 24px; margin-bottom: 16px; }
-  .card h2 { font-size: 15px; font-weight: 500; margin-bottom: 14px; }
+  .metric-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+  .metric-card .label { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
+  .metric-card .value { font-size: 22px; font-weight: 600; }
+  .metric-card .sub { font-size: 11px; color: var(--text-tertiary); margin-top: 4px; }
+  .red { color: #C0392B; }
+  .green { color: #2D7D3A; }
+  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 16px; }
+  .card h2 { font-size: 16px; font-weight: 600; margin-bottom: 14px; }
   .chart-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th { text-align: left; padding: 8px 10px; font-weight: 500; color: var(--color-text-secondary); font-size: 12px; border-bottom: 0.5px solid var(--color-border-tertiary); }
-  td { padding: 8px 10px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  th { text-align: left; padding: 8px 10px; font-weight: 500; color: var(--text-secondary); font-size: 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 8px 10px; border-bottom: 1px solid #f0f0f2; }
   tr:last-child td { border-bottom: none; }
   .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .note { font-size: 11px; color: var(--color-text-tertiary); margin-top: 12px; padding-top: 8px; border-top: 0.5px solid var(--color-border-tertiary); }
-  .legend-row { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 8px; font-size: 12px; color: var(--color-text-secondary); }
+  .note { font-size: 11px; color: var(--text-tertiary); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
+  .legend-row { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 8px; font-size: 12px; color: var(--text-secondary); }
   .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+  .footer { text-align: center; padding: 24px 0; color: var(--text-tertiary); font-size: 12px; }
+  .footer a { color: var(--text-secondary); }
   @media (max-width: 768px) {
     .metric-grid { grid-template-columns: repeat(2, 1fr); }
     .grid-2 { grid-template-columns: 1fr; }
   }
 </style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="brand">南向资金看板</span>
+  <a href="southbound.html" class="active">实时看板</a>
+  <a href="history.html">历史报告</a>
+</nav>
 
 <div class="container">
 
 <div class="header">
   <h1>2026年南向资金流向 Dashboard</h1>
-  <p>数据区间：2026年1月2日 — 2026-08-10 | 数据来源：东方财富数据中心 | 生成时间：2026年08月10日 18:58</p>
+  <p>数据区间：2026年1月2日 — 2026-08-10 | 数据来源：东方财富数据中心 | 生成时间：2026年08月11日 10:48</p>
   <div class="note" style="margin-top:8px;border-top:none;padding-top:0;">
     <strong>南向资金连续4日净流出后今日转正：</strong>8月10日净买入+20.21亿港元（沪+27.96亿/深-7.76亿），终结此前4个交易日净流出（8/5-8/7累计-36.37亿）。
     AI基础设施标的受捧，MINIMAX-W(00100)合计净买入10.14亿港元居首，建滔积层板(01888)+5.99亿次之；
@@ -153,7 +185,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-Chart.defaults.font.family = 'var(--font-sans)';
+Chart.defaults.font.family = getComputedStyle(document.documentElement).getPropertyValue('--font-sans').trim();
 Chart.defaults.font.size = 11;
 
 // ===== Daily southbound flow data =====
@@ -248,3 +280,10 @@ new Chart(document.getElementById('sectorChart'), {
   }
 });
 </script>
+
+<div class="footer">
+  <p>数据来源：<a href="https://data.eastmoney.com/hsgtcg/" target="_blank" rel="noopener">东方财富数据中心</a> · Auto-generated by WorkBuddy</p>
+</div>
+
+</body>
+</html>

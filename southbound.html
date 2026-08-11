@@ -32,504 +32,189 @@
     min-height: 100vh;
   }
 
-  /* Navigation */
-  .nav-bar {
-    background: #1a1a2e;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    height: 48px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .nav-bar .brand {
-    color: #fff;
-    font-weight: 600;
-    font-size: 15px;
-    margin-right: auto;
-  }
-  .nav-bar a {
-    color: #b0b0c0;
-    text-decoration: none;
-    font-size: 13px;
-    padding: 6px 14px;
-    border-radius: 6px;
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-  .nav-bar a:hover { color: #fff; background: rgba(255,255,255,0.1); }
-  .nav-bar a.active { color: #fff; background: rgba(255,255,255,0.1); }
-  .nav-bar .nav-info {
-    color: #636380;
-    font-size: 12px;
-    margin-left: 12px;
-  }
-
-  /* Tab visibility */
-  .tab-panel { display: none; }
-  .tab-panel.show { display: block; }
+  /* Nav */
+  .nav { background: #1a1a2e; padding: 0 24px; display: flex; align-items: center; gap: 8px; height: 48px; position: sticky; top: 0; z-index: 100; }
+  .nav .brand { color: #fff; font-weight: 600; font-size: 15px; margin-right: auto; }
+  .nav a { color: #b0b0c0; text-decoration: none; font-size: 13px; padding: 6px 14px; border-radius: 6px; transition: all 0.2s; cursor: pointer; }
+  .nav a:hover { color: #fff; background: rgba(255,255,255,0.1); }
+  .nav a.active { color: #fff; background: rgba(255,255,255,0.1); }
 
   .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
 
-  /* ===== Dashboard Section ===== */
-  .dash-section {
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    padding: 0;
-    margin-bottom: 0;
-    box-shadow: none;
-  }
-  .dash-header { margin-bottom: 24px; }
-  .dash-header h1 { font-size: 22px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
-  .dash-header p { font-size: 13px; color: var(--text-secondary); }
-  .dash-header .header-note {
-    font-size: 13px;
-    color: #5D4E1B;
-    background: #FFF9E6;
-    border: 1px solid #F0D77B;
-    border-radius: var(--radius-sm);
-    padding: 12px 16px;
-    margin-top: 12px;
-    line-height: 1.7;
-  }
-  .dash-section .date-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: #1a1a2e;
-    color: #fff;
-    padding: 4px 16px;
-    border-radius: 20px;
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 20px;
-  }
-  .dash-section .date-badge .tag {
-    font-size: 11px;
-    font-weight: 400;
-    opacity: 0.8;
-    padding: 2px 8px;
-    border-radius: 10px;
-  }
-  .dash-section .date-badge .tag.latest { background: rgba(76,175,80,0.3); color: #a5d6a7; }
-  .dash-section .date-badge .tag.historical { background: rgba(255,255,255,0.15); }
+  /* Tab panels */
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
 
-  .metric-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .metric-card {
-    background: var(--card-bg-secondary);
-    border-radius: var(--radius-sm);
-    padding: 16px 18px;
-    border: 1px solid var(--border);
-  }
+  /* Header */
+  .header { margin-bottom: 24px; }
+  .header h1 { font-size: 22px; font-weight: 600; margin-bottom: 6px; color: var(--text); }
+  .header p { font-size: 13px; color: var(--text-secondary); }
+
+  /* Metrics */
+  .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  .metric-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
   .metric-card .label { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
-  .metric-card .value { font-size: 24px; font-weight: 600; }
+  .metric-card .value { font-size: 22px; font-weight: 600; }
   .metric-card .sub { font-size: 11px; color: var(--text-tertiary); margin-top: 4px; }
 
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .mini-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-  .mini-table th {
-    text-align: left;
-    padding: 8px 10px;
-    font-weight: 500;
-    font-size: 11px;
-    color: var(--text-secondary);
-    border-bottom: 1px solid var(--border);
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-  }
-  .mini-table td {
-    padding: 6px 10px;
-    border-bottom: 1px solid #f0f0f2;
-    font-size: 13px;
-  }
-  .mini-table tr:last-child td { border-bottom: none; }
-  .stock-code { color: var(--text-tertiary); font-size: 12px; }
-
-  .commentary-box {
-    background: #FFF9E6;
-    border: 1px solid #F0D77B;
-    border-radius: var(--radius-sm);
-    padding: 14px 18px;
-    margin-top: 16px;
-    font-size: 13px;
-    color: #5D4E1B;
-    line-height: 1.7;
-  }
-  .no-detail {
-    text-align: center;
-    color: var(--text-tertiary);
-    font-size: 13px;
-    padding: 20px;
-    background: var(--card-bg-secondary);
-    border-radius: var(--radius-sm);
-    border: 1px dashed var(--border);
-  }
+  /* Cards */
+  .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 16px; }
+  .card h2 { font-size: 16px; font-weight: 600; margin-bottom: 14px; }
 
   .red { color: #C0392B; }
   .green { color: #2D7D3A; }
 
-  .card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px 24px;
-    margin-bottom: 16px;
-  }
-  .card h2 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 14px;
-  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; padding: 8px 10px; font-weight: 500; color: var(--text-secondary); font-size: 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 8px 10px; border-bottom: 1px solid #f0f0f2; }
+  tr:last-child td { border-bottom: none; }
+
   .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .note {
-    font-size: 11px;
-    color: var(--text-tertiary);
-    margin-top: 12px;
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
-  }
 
-  .section-title {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+  .note { font-size: 11px; color: var(--text-tertiary); margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
 
-  /* ===== Chart ===== */
-  .chart-wrap { position: relative; height: 300px; margin-bottom: 8px; }
-  .chart-legend { display: flex; gap: 20px; margin-bottom: 10px; font-size: 12px; color: var(--text-secondary); }
-  .lgd-dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 4px; vertical-align: middle; }
-  .chart-note { font-size: 11px; color: var(--text-tertiary); margin-top: 6px; }
+  .legend-row { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 8px; font-size: 12px; color: var(--text-secondary); }
+  .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+  .chart-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
-  /* ===== History Section ===== */
-  .history-section {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 24px;
-  }
+  .footer { text-align: center; padding: 24px 0; color: var(--text-tertiary); font-size: 12px; }
+  .footer a { color: var(--text-secondary); }
 
-  .month-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-    gap: 8px;
-    margin-bottom: 20px;
-  }
-  .month-card {
-    background: var(--card-bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 12px 14px;
-    cursor: pointer;
-    transition: all 0.15s;
-    user-select: none;
-  }
-  .month-card:hover { border-color: #bbb; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-  .month-card.sel { border-color: #4a6cf7; background: #f0f3ff; }
-  .month-card .m-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
-  .month-card .m-flow { font-size: 16px; font-weight: 600; }
-  .month-card .m-days { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+  /* === History Tab Styles === */
+  .section-title { font-size: 17px; font-weight: 600; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #1a1a2e; }
 
-  .report-list { display: flex; flex-direction: column; gap: 10px; }
+  .month-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 8px; margin-bottom: 20px; }
+  .month-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px; text-align: center; cursor: pointer; transition: all 0.2s; font-size: 13px; }
+  .month-card:hover { border-color: #1a1a2e; }
+  .month-card.sel { background: #1a1a2e; color: #fff; border-color: #1a1a2e; }
 
-  .r-item {
-    background: var(--card-bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 12px 16px;
-    cursor: pointer;
-    transition: all 0.15s;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    user-select: none;
-  }
-  .r-item:hover { border-color: #bbb; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
-  .r-item.active { border-color: #4a6cf7; background: #f0f3ff; }
-  .r-item .r-left { display: flex; align-items: center; gap: 12px; }
-  .r-item .r-date { font-weight: 600; font-size: 14px; min-width: 90px; }
-  .r-item .r-day { font-size: 12px; color: var(--text-secondary); }
-  .r-item .r-flow { font-size: 15px; font-weight: 600; }
-  .r-item .r-tag {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 10px;
-    font-size: 11px;
-    margin-left: 8px;
-  }
+  /* Report list */
+  .report-list { margin-bottom: 24px; }
+  .r-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; }
+  .r-item:hover { background: var(--card-bg-secondary); }
+  .r-item.active { background: #E8EDF5; }
+  .r-left { display: flex; align-items: center; gap: 10px; }
+  .r-date { font-size: 13px; font-weight: 500; }
+  .r-day { font-size: 11px; color: var(--text-tertiary); }
+  .r-tag { font-size: 10px; padding: 1px 5px; border-radius: 3px; }
+  .r-flow { font-size: 13px; font-weight: 500; }
 
-  /* ===== Monthly Report Panel ===== */
-  .monthly-report {
-    background: var(--card-bg);
-    border: 1px solid #4a6cf7;
-    border-radius: var(--radius);
-    padding: 24px;
-    margin-bottom: 24px;
-    display: none;
-  }
-  .monthly-report.show { display: block; }
-  .monthly-report .mr-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 5px;
-  }
-  .monthly-report .mr-month {
-    font-size: 20px;
-    font-weight: 700;
-    color: #1a1a2e;
-  }
-  .monthly-report .mr-trend {
-    display: inline-block;
-    padding: 3px 12px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 500;
-  }
-  .mr-trend.inflow { background: var(--red-bg); color: var(--red); }
-  .mr-trend.outflow { background: var(--green-bg); color: var(--green); }
-  .mr-trend.range { background: #FFF3E0; color: #E65100; }
-  .monthly-report .mr-subtitle {
-    font-size: 13px;
-    color: var(--text-secondary);
-    margin-bottom: 16px;
-  }
-  .monthly-report .mr-metrics {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  .monthly-report .mr-metric {
-    background: var(--card-bg-secondary);
-    border-radius: var(--radius-sm);
-    padding: 14px 16px;
-    border: 1px solid var(--border);
-  }
-  .monthly-report .mr-metric .mrm-label {
-    font-size: 11px;
-    color: var(--text-secondary);
-    margin-bottom: 4px;
-  }
-  .monthly-report .mr-metric .mrm-value {
-    font-size: 20px;
-    font-weight: 600;
-  }
-  .monthly-report .mr-metric .mrm-sub {
-    font-size: 11px;
-    color: var(--text-tertiary);
-    margin-top: 2px;
-  }
-  .monthly-report .mr-commentary {
-    background: #FFF9E6;
-    border: 1px solid #F0D77B;
-    border-radius: var(--radius-sm);
-    padding: 14px 18px;
-    font-size: 13px;
-    color: #5D4E1B;
-    line-height: 1.7;
-    margin-top: 16px;
-  }
+  /* Monthly report */
+  .monthly-report { background: var(--card-bg); border: 2px solid #1a1a2e; border-radius: var(--radius); padding: 24px; margin-bottom: 20px; }
+  .mr-header { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+  .mr-month { font-size: 20px; font-weight: 700; }
+  .mr-trend { font-size: 12px; padding: 2px 10px; border-radius: 10px; font-weight: 500; }
+  .mr-trend.up { background: var(--red-bg); color: var(--red); }
+  .mr-trend.down { background: var(--green-bg); color: var(--green); }
+  .mr-trend.mix { background: #FFF3E0; color: #E65100; }
+  .mr-subtitle { font-size: 12px; color: var(--text-tertiary); margin-bottom: 18px; }
+  .mr-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+  .mr-metric { background: var(--card-bg-secondary); border-radius: var(--radius-sm); padding: 12px 14px; text-align: center; }
+  .mr-metric .mr-val { font-size: 18px; font-weight: 600; }
+  .mr-metric .mr-lbl { font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+  .mr-metric .mr-sub { font-size: 10px; color: var(--text-tertiary); }
 
-  /* ===== Sector Flow ===== */
-  .sector-section { margin-top: 20px; }
-  .sector-section .sector-title {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .sector-section .sector-title::before {
-    content: '';
-    display: inline-block;
-    width: 4px;
-    height: 18px;
-    background: #4A6CF7;
-    border-radius: 2px;
-  }
-  .sector-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .sector-row {
-    display: grid;
-    grid-template-columns: 140px 1fr 100px 80px;
-    align-items: center;
-    gap: 12px;
-    font-size: 13px;
-  }
-  .sector-row .sr-name {
-    font-weight: 600;
-    color: #1a1a2e;
-    font-size: 13px;
-  }
-  .sector-row .sr-bar-wrap {
-    height: 20px;
-    background: #f0f0f3;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-  }
-  .sector-row .sr-bar {
-    height: 100%;
-    border-radius: 10px;
-    transition: width 0.4s ease;
-    min-width: 4px;
-    display: flex;
-    align-items: center;
-    padding-left: 8px;
-    font-size: 11px;
-    color: #fff;
-    font-weight: 500;
-    white-space: nowrap;
-  }
-  .sector-row .sr-bar.inflow { background: linear-gradient(90deg, #E74C3C, #C0392B); }
-  .sector-row .sr-bar.outflow { background: linear-gradient(90deg, #4CAF50, #388E3C); }
-  .sector-row .sr-amount {
-    font-weight: 600;
-    text-align: right;
-    font-size: 14px;
-  }
-  .sector-row .sr-trend {
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 10px;
-    text-align: center;
-    font-weight: 500;
-    white-space: nowrap;
-  }
-  .sector-row .sr-trend.sf-inflow { background: var(--red-bg); color: var(--red); }
-  .sector-row .sr-trend.sf-outflow { background: var(--green-bg); color: var(--green); }
-  .sector-row .sr-comment {
-    grid-column: 2 / -1;
-    font-size: 11px;
-    color: var(--text-secondary);
-    padding-left: 0;
-    margin-top: -2px;
-    margin-bottom: 2px;
-  }
-  .sector-legend {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 12px;
-    font-size: 12px;
-    color: var(--text-secondary);
-  }
-  .sector-legend .sld-dot {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 3px;
-    margin-right: 4px;
-    vertical-align: middle;
-  }
+  .mr-section-title { font-size: 14px; font-weight: 600; margin: 18px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .mr-table { width: 100%; }
+  .mr-commentary { background: #FFF9E6; border: 1px solid #F0D77B; border-radius: var(--radius-sm); padding: 14px 18px; font-size: 13px; color: #5D4E1B; line-height: 1.7; margin-top: 16px; }
+
+  /* Sector flows */
+  .mr-sector { margin: 16px 0; }
+  .mr-sector .sf-header { display: flex; align-items: center; font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; gap: 12px; }
+  .sf-legend-dot { display: inline-block; width: 8px; height: 8px; border-radius: 2px; }
+  .sector-row { display: grid; grid-template-columns: 110px 1fr 90px 70px; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #f0f0f2; font-size: 13px; }
+  .sector-row:last-child { border-bottom: none; }
+  .sr-name { font-weight: 500; }
+  .sr-bar-wrap { height: 16px; background: #f0f0f2; border-radius: 3px; overflow: hidden; position: relative; }
+  .sr-bar { height: 100%; border-radius: 3px; transition: width 0.4s ease; }
+  .sr-bar.inflow { background: linear-gradient(90deg, #E24B4A, #C0392B); }
+  .sr-bar.outflow { background: linear-gradient(90deg, #639922, #2D7D3A); }
+  .sr-amount { font-size: 12px; font-weight: 500; text-align: right; }
+  .sr-trend { font-size: 10px; padding: 1px 6px; border-radius: 6px; text-align: center; white-space: nowrap; }
 
   @media (max-width: 768px) {
     .metric-grid { grid-template-columns: repeat(2, 1fr); }
     .grid-2 { grid-template-columns: 1fr; }
-    .two-col { grid-template-columns: 1fr; }
-    .monthly-report .mr-metrics { grid-template-columns: repeat(2, 1fr); }
+    .mr-metrics { grid-template-columns: repeat(2, 1fr); }
     .month-grid { grid-template-columns: repeat(3, 1fr); }
     .container { padding: 12px; }
     .sector-row { grid-template-columns: 100px 1fr 80px 60px; gap: 6px; }
-    .sector-row .sr-amount { font-size: 12px; }
-    .sector-row .sr-trend { font-size: 10px; padding: 1px 6px; }
+    .sr-amount { font-size: 12px; }
+    .sr-trend { font-size: 10px; padding: 1px 6px; }
   }
-
-  .footer { text-align: center; padding: 32px 0; color: var(--text-tertiary); font-size: 12px; }
-  .footer a { color: var(--text-secondary); }
 </style>
 </head>
 <body>
 
-<nav class="nav-bar">
+<nav class="nav">
   <span class="brand">南向资金看板</span>
-  <a id="tabDashboard" class="active" onclick="switchTab('dashboard')">实时看板</a>
+  <a class="active" id="tabDashboard" onclick="switchTab('dashboard')">实时看板</a>
   <a id="tabHistory" onclick="switchTab('history')">历史报告</a>
-  <span class="nav-info" id="navDataInfo"></span>
 </nav>
 
 <div class="container">
 
 <!-- ==================== Dashboard Tab ==================== -->
-<div class="tab-panel show" id="dashboardSection">
-  <div class="dash-section">
-  <!-- Header -->
-  <div class="dash-header" id="dashHeader"></div>
+<div class="tab-content active" id="dashboardSection">
 
-  <!-- Metric Cards -->
-  <div class="metric-grid" id="metricCards"></div>
+<div class="header" id="dashHeader">
+  <h1>2026年南向资金流向 Dashboard</h1>
+  <p id="dashSubtitle">数据区间：2026年1月2日 — 加载中... | 数据来源：东方财富数据中心</p>
+  <div class="note" id="dashCommentary" style="margin-top:8px;border-top:none;padding-top:0;"></div>
+</div>
 
-  <!-- Year Chart Card -->
-  <div class="card" id="chartCard">
-    <h2>2026年每日净买入额（亿港元）<span style="font-size:12px;color:var(--text-tertiary);font-weight:400;"> · 蓝色标记为已选中日期</span></h2>
-    <div class="chart-legend" style="margin-bottom:10px;">
-      <span><span class="lgd-dot" style="background:#C0392B"></span>净流入</span>
-      <span><span class="lgd-dot" style="background:#2D7D3A"></span>净流出</span>
-      <span><span class="lgd-dot" style="background:#4A6CF7"></span>已选中</span>
-    </div>
-    <div class="chart-wrap"><canvas id="yearChart"></canvas></div>
-    <div class="note">数据来源：东方财富数据中心。1月—4月22日为估算值，4月23日起为逐日精确数据。</div>
+<div class="metric-grid" id="metricCards"></div>
+
+<div class="card">
+  <h2>年初至今每日净买入额（亿港元）</h2>
+  <div class="legend-row">
+    <span style="display:flex;align-items:center;gap:4px;"><span class="legend-dot" style="background:#E24B4A;"></span>净流入</span>
+    <span style="display:flex;align-items:center;gap:4px;"><span class="legend-dot" style="background:#639922;"></span>净流出</span>
   </div>
-
-  <!-- Stock Tables (Two Column) -->
-  <div class="grid-2" id="stockTables"></div>
-
-  <!-- Top Holdings Card -->
-  <div class="card" id="holdingsCard">
-    <h2>南向资金前十大持仓（按持股市值）</h2>
-    <table>
-      <tr><th>#</th><th>股票名称</th><th>代码</th><th>持股市值</th><th>持股数量</th><th>占总股本比</th></tr>
-      <tr><td>1</td><td>腾讯控股</td><td>00700.HK</td><td>4,381 亿</td><td>10.56 亿股</td><td>11.59%</td></tr>
-      <tr><td>2</td><td>建设银行</td><td>00939.HK</td><td>3,137 亿</td><td>363.52 亿股</td><td>15.11%</td></tr>
-      <tr><td>3</td><td>工商银行</td><td>01398.HK</td><td>2,532 亿</td><td>363.84 亿股</td><td>41.91%</td></tr>
-      <tr><td>4</td><td>中国海洋石油</td><td>00883.HK</td><td>2,303 亿</td><td>105.18 亿股</td><td>22.11%</td></tr>
-      <tr><td>5</td><td>中国移动</td><td>00941.HK</td><td>2,288 亿</td><td>29.22 亿股</td><td>13.47%</td></tr>
-      <tr><td>6</td><td>汇丰控股</td><td>00005.HK</td><td>2,275 亿</td><td>15.30 亿股</td><td>8.90%</td></tr>
-      <tr><td>7</td><td>中芯国际</td><td>00981.HK</td><td>1,980 亿</td><td>25.43 亿股</td><td>29.70%</td></tr>
-      <tr><td>8</td><td>阿里巴巴-W</td><td>09988.HK</td><td>1,931 亿</td><td>19.52 亿股</td><td>10.15%</td></tr>
-      <tr><td>9</td><td>中国银行</td><td>03988.HK</td><td>1,548 亿</td><td>289.87 亿股</td><td>34.66%</td></tr>
-      <tr><td>10</td><td>小米集团-W</td><td>01810.HK</td><td>1,182 亿</td><td>52.27 亿股</td><td>20.22%</td></tr>
-    </table>
-    <div class="note">数据来源：证券时报数据宝，截至2026年6月23日。</div>
+  <div class="chart-scroll" id="daily-chart-scroll">
+    <canvas id="dailyChart" role="img" aria-label="2026年南向资金每日净买入柱状图"></canvas>
   </div>
+  <div class="note">数据来源：东方财富数据中心。1月-4月22日为基于月度汇总及已知新闻日的估算值，4月23日起为逐日精确披露数据。</div>
+</div>
 
-  <!-- Sector Analysis Card -->
-  <div class="card" id="sectorCard">
-    <h2>市场特征与资金动向</h2>
-    <div class="chart-legend" style="margin-bottom:12px;">
-      <span><span class="lgd-dot" style="background:#C0392B"></span>增持板块</span>
-      <span><span class="lgd-dot" style="background:#2D7D3A"></span>减持板块</span>
-    </div>
-    <div style="height:260px;">
-      <canvas id="sectorChart" role="img" aria-label="南向资金行业净买入分布"></canvas>
-    </div>
-    <div class="note" id="sectorCommentary"></div>
+<div class="grid-2" id="stockTables"></div>
+
+<div class="card">
+  <h2>南向资金前十大持仓（按持股市值）</h2>
+  <table>
+    <tr><th>#</th><th>股票名称</th><th>代码</th><th>持股市值</th><th>持股数量</th><th>占总股本比</th></tr>
+    <tr><td>1</td><td>腾讯控股</td><td>00700.HK</td><td>4,381 亿</td><td>10.56 亿股</td><td>11.59%</td></tr>
+    <tr><td>2</td><td>建设银行</td><td>00939.HK</td><td>3,137 亿</td><td>363.52 亿股</td><td>15.11%</td></tr>
+    <tr><td>3</td><td>工商银行</td><td>01398.HK</td><td>2,532 亿</td><td>363.84 亿股</td><td>41.91%</td></tr>
+    <tr><td>4</td><td>中国海洋石油</td><td>00883.HK</td><td>2,303 亿</td><td>105.18 亿股</td><td>22.11%</td></tr>
+    <tr><td>5</td><td>中国移动</td><td>00941.HK</td><td>2,288 亿</td><td>29.22 亿股</td><td>13.47%</td></tr>
+    <tr><td>6</td><td>汇丰控股</td><td>00005.HK</td><td>2,275 亿</td><td>15.30 亿股</td><td>8.90%</td></tr>
+    <tr><td>7</td><td>中芯国际</td><td>00981.HK</td><td>1,980 亿</td><td>25.43 亿股</td><td>29.70%</td></tr>
+    <tr><td>8</td><td>阿里巴巴-W</td><td>09988.HK</td><td>1,931 亿</td><td>19.52 亿股</td><td>10.15%</td></tr>
+    <tr><td>9</td><td>中国银行</td><td>03988.HK</td><td>1,548 亿</td><td>289.87 亿股</td><td>34.66%</td></tr>
+    <tr><td>10</td><td>小米集团-W</td><td>01810.HK</td><td>1,182 亿</td><td>52.27 亿股</td><td>20.22%</td></tr>
+  </table>
+  <div class="note">数据来源：证券时报数据宝，截至2026年6月23日。</div>
+</div>
+
+<div class="card">
+  <h2>市场特征与资金动向</h2>
+  <div class="legend-row" style="margin-bottom:12px;">
+    <span style="display:flex;align-items:center;gap:4px;"><span class="legend-dot" style="background:#A32D2D;"></span>增持板块</span>
+    <span style="display:flex;align-items:center;gap:4px;"><span class="legend-dot" style="background:#3B6D11;"></span>减持板块</span>
   </div>
+  <div style="height:260px;">
+    <canvas id="sectorChart" role="img" aria-label="南向资金行业净买入分布"></canvas>
+  </div>
+  <div class="note" id="sectorCom">
+    <strong>关键趋势：</strong>2026年南向资金持续流入港股市场，科技龙头（腾讯、阿里）与半导体（中芯国际）为核心主线。MSCI扩容及港股估值修复持续吸引内地资金南下配置。
   </div>
 </div>
 
+</div>
+
 <!-- ==================== History Tab ==================== -->
-<div class="tab-panel" id="historySection">
-  <div class="history-section">
+<div class="tab-content" id="historySection">
   <div class="section-title">历史报告</div>
   <div class="month-grid" id="monthGrid"></div>
 
@@ -537,7 +222,6 @@
   <div class="monthly-report" id="monthlyReport"></div>
 
   <div class="report-list" id="reportList"></div>
-  </div>
 </div>
 
 </div>
@@ -548,9 +232,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-// ============================================================
-// Global state
-// ============================================================
 Chart.defaults.font.family = getComputedStyle(document.documentElement).getPropertyValue('--font-sans').trim();
 Chart.defaults.font.size = 11;
 
@@ -559,7 +240,8 @@ const GREEN = '#2D7D3A';
 const BLUE = '#4A6CF7';
 let gData = null;
 let gSelectedDate = null;
-let gYearChart = null;
+let gDailyChart = null;
+let gSectorChart = null;
 const WEEKDAYS = ['日','一','二','三','四','五','六'];
 
 // ============================================================
@@ -582,10 +264,9 @@ function findReport(date) {
 }
 
 function fmt(v) { return (v >= 0 ? '+' : '') + v.toFixed(2); }
-function flowColor(v) { return v >= 0 ? RED : GREEN; }
 
 // ============================================================
-// Dashboard rendering
+// Dashboard rendering — matches generate_dashboard.py EXACTLY
 // ============================================================
 function renderDashboard(date) {
   gSelectedDate = date;
@@ -596,432 +277,207 @@ function renderDashboard(date) {
   const d = new Date(date);
   const dayName = WEEKDAYS[d.getDay()];
 
-  // Header
-  const headerHtml = `
-    <h1>2026年南向资金流向 Dashboard</h1>
-    <p>数据区间：2026年1月2日 — ${date} | 数据来源：东方财富数据中心 ${isLatest ? ' | <span style="color:var(--red);font-weight:500;">最新</span>' : ' | <span style="color:var(--text-secondary);">历史回看</span>'}</p>`;
-  document.getElementById('dashHeader').innerHTML = headerHtml;
+  // ---- Header ----
+  const nowStr = new Date().toISOString().replace('T',' ').substring(0,16);
+  document.getElementById('dashSubtitle').textContent =
+    '数据区间：2026年1月2日 — ' + date + ' | 数据来源：东方财富数据中心 | 生成时间：' + nowStr;
 
-  // Metric cards
-  const hasDetail = !!(r.top_buy || r.top_sell);
+  const comEl = document.getElementById('dashCommentary');
+  if (r.commentary && isLatest) {
+    comEl.style.display = '';
+    comEl.innerHTML = '<strong>今日要点：</strong>' + r.commentary;
+  } else if (r.commentary) {
+    comEl.style.display = '';
+    comEl.innerHTML = '<strong>' + date + ' 点评：</strong>' + r.commentary;
+  } else {
+    comEl.style.display = 'none';
+  }
+
+  // ---- Metric cards ----
   const shVal = r.sh_net != null ? (r.sh_net >= 0 ? '+' : '') + r.sh_net.toFixed(0) : '--';
   const szVal = r.sz_net != null ? (r.sz_net >= 0 ? '+' : '') + r.sz_net.toFixed(0) : '--';
+  const totalClass = r.total_net >= 0 ? 'red' : 'green';
 
-  document.getElementById('metricCards').innerHTML = `
-    <div class="metric-card">
-      <div class="label">当日净买入（沪+深）</div>
-      <div class="value ${r.total_net >= 0 ? 'red' : 'green'}">${(r.total_net >= 0 ? '+' : '') + r.total_net.toFixed(2)} 亿港元</div>
-      <div class="sub">沪 ${shVal}亿 / 深 ${szVal}亿 | ${date}</div>
-    </div>
-    <div class="metric-card">
-      <div class="label">历史累计净买入</div>
-      <div class="value red">3.18 万亿港元</div>
-      <div class="sub">港股通开通以来累计 | 东方财富</div>
-    </div>
-    <div class="metric-card">
-      <div class="label">年初至今累计净流入</div>
-      <div class="value red">≈ 3,690 亿港元</div>
-      <div class="sub">截至${date} 约143个交易日估算</div>
-    </div>
-    <div class="metric-card">
-      <div class="label">日均净流入</div>
-      <div class="value red">≈ 25.8 亿港元</div>
-      <div class="sub">2026年YTD日均</div>
-    </div>
-  `;
+  document.getElementById('metricCards').innerHTML =
+    '<div class="metric-card">' +
+      '<div class="label">当日净买入（沪+深）</div>' +
+      '<div class="value ' + totalClass + '">' + (r.total_net >= 0 ? '+' : '') + r.total_net.toFixed(2) + ' 亿港元</div>' +
+      '<div class="sub">沪 ' + shVal + '亿 / 深 ' + szVal + '亿 | ' + date + '</div>' +
+    '</div>' +
+    '<div class="metric-card">' +
+      '<div class="label">历史累计净买入</div>' +
+      '<div class="value red">3.18 万亿港元</div>' +
+      '<div class="sub">港股通开通以来累计 | 东方财富</div>' +
+    '</div>' +
+    '<div class="metric-card">' +
+      '<div class="label">年初至今累计净流入</div>' +
+      '<div class="value red">≈ 3,690 亿港元</div>' +
+      '<div class="sub">截至' + date + ' 约143个交易日估算</div>' +
+    '</div>' +
+    '<div class="metric-card">' +
+      '<div class="label">日均净流入</div>' +
+      '<div class="value red">≈ 25.8 亿港元</div>' +
+      '<div class="sub">2026年YTD日均</div>' +
+    '</div>';
 
-  // Stock tables as cards
-  let stockHtml = '';
+  // ---- Stock tables ----
+  const hasDetail = !!(r.top_buy || r.top_sell);
   if (hasDetail) {
-    // Buy side
-    stockHtml += '<div class="card"><h2>当日净买入前十大个股</h2><table><tr><th>#</th><th>股票名称</th><th>代码</th><th>净买入额（沪+深）</th></tr>';
+    let buyRows = '';
     if (r.top_buy && r.top_buy.length) {
-      stockHtml += r.top_buy.map(s =>
+      buyRows = r.top_buy.map(s =>
         '<tr><td>' + s.rank + '</td><td>' + s.name + '</td><td>' + (s.code || '--') + '</td><td class="red">+' + s.amount.toFixed(2) + ' 亿</td></tr>'
       ).join('');
       if (r.top_buy.length < 10) {
         for (let i = r.top_buy.length + 1; i <= 10; i++) {
-          stockHtml += '<tr><td>' + i + '</td><td colspan="3" style="color:var(--text-tertiary);">— 十大成交股中仅' + r.top_buy.length + '只合并净流入 —</td></tr>';
+          buyRows += '<tr><td>' + i + '</td><td colspan="3" style="color:var(--text-tertiary);">— 当日十大成交股中仅' + r.top_buy.length + '只合并净流入 —</td></tr>';
         }
       }
     }
-    stockHtml += '</table><div class="note">合并港股通(沪/深)十大成交股 | 东方财富数据中心</div></div>';
 
-    // Sell side
-    stockHtml += '<div class="card"><h2>当日净卖出前十大个股</h2><table><tr><th>#</th><th>股票名称</th><th>代码</th><th>净卖出额（沪+深）</th></tr>';
+    let sellRows = '';
     if (r.top_sell && r.top_sell.length) {
-      stockHtml += r.top_sell.map(s =>
+      sellRows = r.top_sell.map(s =>
         '<tr><td>' + s.rank + '</td><td>' + s.name + '</td><td>' + (s.code || '--') + '</td><td class="green">' + s.amount.toFixed(2) + ' 亿</td></tr>'
       ).join('');
       if (r.top_sell.length < 10) {
         for (let i = r.top_sell.length + 1; i <= 10; i++) {
-          stockHtml += '<tr><td>' + i + '</td><td colspan="3" style="color:var(--text-tertiary);">— 十大成交股中仅' + r.top_sell.length + '只合并净流出 —</td></tr>';
+          sellRows += '<tr><td>' + i + '</td><td colspan="3" style="color:var(--text-tertiary);">— 当日十大成交股中仅' + r.top_sell.length + '只合并净流出 —</td></tr>';
         }
       }
     }
-    stockHtml += '</table><div class="note">合并港股通(沪/深)十大成交股 | 东方财富数据中心</div></div>';
-  } else {
-    stockHtml = '<div class="no-detail" style="grid-column:1/-1;margin:0;">该日仅记录净流向汇总数据，无个股排名详情</div>';
-  }
-  document.getElementById('stockTables').innerHTML = stockHtml;
 
-  // Update sector commentary
-  document.getElementById('sectorCommentary').innerHTML =
+    document.getElementById('stockTables').innerHTML =
+      '<div class="card">' +
+        '<h2>当日净买入前十大个股</h2>' +
+        '<table><tr><th>#</th><th>股票名称</th><th>代码</th><th>净买入额（沪+深）</th></tr>' +
+        buyRows +
+        '</table>' +
+        '<div class="note">合并港股通(沪)与港股通(深)十大成交股数据，来源：东方财富数据中心</div>' +
+      '</div>' +
+      '<div class="card">' +
+        '<h2>当日净卖出前十大个股</h2>' +
+        '<table><tr><th>#</th><th>股票名称</th><th>代码</th><th>净卖出额（沪+深）</th></tr>' +
+        sellRows +
+        '</table>' +
+        '<div class="note">合并港股通(沪)与港股通(深)十大成交股数据，来源：东方财富数据中心</div>' +
+      '</div>';
+  } else {
+    document.getElementById('stockTables').innerHTML =
+      '<div class="card" style="text-align:center;color:var(--text-tertiary);padding:40px;">该日仅记录净流向汇总数据，无个股排名详情</div>';
+  }
+
+  // ---- Daily chart ----
+  renderDailyChart(gData, date);
+
+  // ---- Sector commentary ----
+  document.getElementById('sectorCom').innerHTML =
     '<strong>关键趋势：</strong>' + (r.commentary || '数据暂缺');
 
-  // Update nav info
-  document.getElementById('navDataInfo').textContent =
-    '共 ' + gData.reports.length + ' 个交易日 | 选中: ' + date;
+  // Refresh sector chart
+  renderSectorChart();
 
-  // Update year chart
-  renderYearChart(gData, date);
-
-  // Highlight active item in history list
+  // Highlight active in history list
   document.querySelectorAll('.r-item').forEach(el => {
     el.classList.toggle('active', el.dataset.date === date);
   });
 
+  // Switch to dashboard tab
   switchTab('dashboard');
 }
 
 // ============================================================
-// Tab switching
+// Daily Chart — wide canvas, matches generate_dashboard.py
 // ============================================================
-function switchTab(tab) {
-  document.getElementById('dashboardSection').classList.toggle('show', tab === 'dashboard');
-  document.getElementById('historySection').classList.toggle('show', tab === 'history');
+function renderDailyChart(data, selectedDate) {
+  if (gDailyChart) gDailyChart.destroy();
 
-  document.getElementById('tabDashboard').classList.toggle('active', tab === 'dashboard');
-  document.getElementById('tabHistory').classList.toggle('active', tab === 'history');
+  const canvas = document.getElementById('dailyChart');
+  const ctx = canvas.getContext('2d');
 
-  if (tab === 'history') {
-    // Trigger chart resize when history tab becomes visible
-    if (gYearChart) setTimeout(() => gYearChart.resize(), 100);
-  } else {
-    // Trigger chart resize when dashboard tab becomes visible
-    if (gYearChart) setTimeout(() => gYearChart.resize(), 100);
-  }
-}
+  const BAR_W = 6;
+  const GAP = 1;
+  const PADDING = 80;
+  const N = data.daily_chart.labels.length;
+  const canvasW = N * (BAR_W + GAP) + PADDING;
+  const canvasH = 300;
 
-// ============================================================
-// Year chart
-// ============================================================
-function renderYearChart(data, selectedDate) {
-  if (gYearChart) gYearChart.destroy();
+  canvas.width = canvasW * (window.devicePixelRatio || 1);
+  canvas.height = canvasH * (window.devicePixelRatio || 1);
+  canvas.style.width = canvasW + 'px';
+  canvas.style.height = canvasH + 'px';
 
-  const ctx = document.getElementById('yearChart').getContext('2d');
-  const labels = data.daily_chart.labels;
-  const values = data.daily_chart.values;
+  const selMM = selectedDate.substring(5);
+  const selIdx = data.daily_chart.labels.indexOf(selMM);
 
-  // Find the index of the selected date in labels
-  const selMM = selectedDate.substring(5); // "MM-DD"
-  const selIdx = labels.indexOf(selMM);
-
-  const colors = values.map((v, i) => {
+  const colors = data.daily_chart.values.map((v, i) => {
     if (i === selIdx) return BLUE;
-    return v >= 0 ? RED : GREEN;
+    return v >= 0 ? '#E24B4A' : '#639922';
   });
 
-  gYearChart = new Chart(ctx, {
+  gDailyChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: labels,
+      labels: data.daily_chart.labels,
       datasets: [{
-        data: values,
+        data: data.daily_chart.values,
         backgroundColor: colors,
         borderRadius: 1,
-        barPercentage: 0.9,
+        barPercentage: BAR_W / (BAR_W + GAP),
         categoryPercentage: 1
       }]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
+      responsive: false,
+      devicePixelRatio: window.devicePixelRatio || 1,
       plugins: {
         legend: { display: false },
         tooltip: {
           callbacks: {
-            title: items => '2026-' + items[0].label,
-            label: ctx => fmt(ctx.raw) + ' 亿港元' + (ctx.dataIndex === selIdx ? ' [已选中]' : '')
+            label: ctx => (ctx.raw >= 0 ? '+' : '') + ctx.raw.toFixed(2) + ' 亿港元'
           }
-        }
-      },
-      onClick: function(evt, elements) {
-        if (elements.length > 0) {
-          const idx = elements[0].index;
-          const mmdd = labels[idx];
-          const fullDate = '2026-' + mmdd;
-          renderDashboard(fullDate);
-          switchTab('dashboard');
         }
       },
       scales: {
         x: {
           grid: { display: false },
           ticks: {
-            color: '#939393',
-            autoSkip: true,
+            color: '#5F5E5A',
+            autoSkip: false,
             maxRotation: 90,
             minRotation: 90,
             font: { size: 9 },
-            maxTicksLimit: 30
+            callback: function(val) { return this.getLabelForValue(val); }
           }
         },
         y: {
-          grid: { color: 'rgba(0,0,0,0.05)' },
-          ticks: { color: '#939393', callback: v => v + '亿' },
-          min: Math.min(-350, Math.floor(Math.min(...values) / 50) * 50 - 50),
-          max: Math.max(450, Math.ceil(Math.max(...values) / 50) * 50 + 50)
+          grid: { color: 'rgba(0,0,0,0.06)' },
+          ticks: { color: '#5F5E5A', callback: v => v + '亿' },
+          min: -320,
+          max: 420
         }
       }
     }
   });
-}
 
-// ============================================================
-// History list
-// ============================================================
-function renderHistory() {
-  const reports = gData.reports;
-  const reversed = [...reports].reverse();
-
-  const listEl = document.getElementById('reportList');
-  listEl.innerHTML = reversed.map(r => {
-    const d = new Date(r.date);
-    const dayName = WEEKDAYS[d.getDay()];
-    const hasDetail = !!(r.top_buy || r.top_sell);
-    const flowSign = r.total_net >= 0 ? '净流入' : '净流出';
-
-    return '<div class="r-item' + (r.date === gSelectedDate ? ' active' : '') + '" ' +
-      'data-date="' + r.date + '" ' +
-      'onclick="renderDashboard(\'' + r.date + '\'); switchTab(\'dashboard\');">' +
-      '<div class="r-left">' +
-      '<span class="r-date">' + r.date + '</span>' +
-      '<span class="r-day">周' + dayName + '</span>' +
-      (hasDetail ? '<span class="r-tag" style="background:var(--red-bg);color:var(--red)">含个股排名</span>' : '') +
-      '</div>' +
-      '<div>' +
-      '<span class="r-flow" style="color:' + flowColor(r.total_net) + '">' +
-      fmt(r.total_net) + ' 亿</span>' +
-      '</div></div>';
-  }).join('');
-}
-
-function renderMonths() {
-  const reports = gData.reports;
-  const months = {};
-  reports.forEach(r => {
-    const m = r.date.substring(0, 7);
-    if (!months[m]) months[m] = { total: 0, days: 0 };
-    months[m].total += r.total_net;
-    months[m].days++;
-  });
-
-  const grid = document.getElementById('monthGrid');
-  const monthNames = ['','1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
-
-  grid.innerHTML = '<div class="month-card sel" data-month="all" onclick="filterMonth(\'all\')">' +
-    '<div class="m-name">全年</div>' +
-    '<div class="m-flow" style="color:' + flowColor(reports.reduce((s,r)=>s+r.total_net,0)) + '">' +
-    fmt(reports.reduce((s,r)=>s+r.total_net,0)) + ' 亿</div>' +
-    '<div class="m-days">' + reports.length + ' 交易日</div></div>';
-
-  Object.keys(months).forEach(m => {
-    const mo = months[m];
-    const mIdx = parseInt(m.split('-')[1]);
-    grid.innerHTML += '<div class="month-card" data-month="' + m + '" onclick="filterMonth(\'' + m + '\')">' +
-      '<div class="m-name">' + monthNames[mIdx] + '</div>' +
-      '<div class="m-flow" style="color:' + flowColor(mo.total) + '">' +
-      fmt(mo.total) + ' 亿</div>' +
-      '<div class="m-days">' + mo.days + ' 交易日</div></div>';
-  });
-}
-
-function filterMonth(month) {
-  document.querySelectorAll('.month-card').forEach(el => el.classList.remove('sel'));
-  document.querySelector('.month-card[data-month="' + month + '"]')?.classList.add('sel');
-
-  const reports = month === 'all'
-    ? gData.reports
-    : gData.reports.filter(r => r.date.startsWith(month));
-
-  const reversed = [...reports].reverse();
-  const listEl = document.getElementById('reportList');
-  listEl.innerHTML = reversed.map(r => {
-    const d = new Date(r.date);
-    const dayName = WEEKDAYS[d.getDay()];
-    const hasDetail = !!(r.top_buy || r.top_sell);
-
-    return '<div class="r-item' + (r.date === gSelectedDate ? ' active' : '') + '" ' +
-      'data-date="' + r.date + '" ' +
-      'onclick="renderDashboard(\'' + r.date + '\'); switchTab(\'dashboard\');">' +
-      '<div class="r-left">' +
-      '<span class="r-date">' + r.date + '</span>' +
-      '<span class="r-day">周' + dayName + '</span>' +
-      (hasDetail ? '<span class="r-tag" style="background:var(--red-bg);color:var(--red)">含个股排名</span>' : '') +
-      '</div>' +
-      '<div>' +
-      '<span class="r-flow" style="color:' + flowColor(r.total_net) + '">' +
-      fmt(r.total_net) + ' 亿</span>' +
-      '</div></div>';
-  }).join('');
-
-  // Render monthly report
-  renderMonthlyReport(month);
-}
-
-// ============================================================
-// Monthly report rendering
-// ============================================================
-function renderMonthlyReport(month) {
-  const panel = document.getElementById('monthlyReport');
-  if (!gData.monthly_reports) { panel.classList.remove('show'); return; }
-
-  const mr = gData.monthly_reports.find(m => m.month === month);
-  if (!mr) { panel.classList.remove('show'); return; }
-
-  const trendClass = mr.trend === '流入' ? 'inflow' : mr.trend === '流出' ? 'outflow' : 'range';
-  const trendText = mr.trend === '流入' ? '月度净流入' : mr.trend === '流出' ? '月度净流出' : '资金震荡';
-
-  let metricsHtml = `
-    <div class="mr-metric">
-      <div class="mrm-label">月度净流入</div>
-      <div class="mrm-value" style="color:${flowColor(mr.total_net)}">${fmt(mr.total_net)} 亿港元</div>
-      <div class="mrm-sub">${mr.days} 个交易日</div>
-    </div>
-    <div class="mr-metric">
-      <div class="mrm-label">日均净流向</div>
-      <div class="mrm-value" style="color:${flowColor(mr.avg_daily)}">${fmt(mr.avg_daily)} 亿</div>
-      <div class="mrm-sub">净流入 ${mr.inflow_days} 天 / 净流出 ${mr.outflow_days} 天</div>
-    </div>
-    <div class="mr-metric">
-      <div class="mrm-label">最大单日净流入</div>
-      <div class="mrm-value" style="color:${RED}">+${mr.max_inflow.toFixed(1)} 亿</div>
-      <div class="mrm-sub">当日峰值</div>
-    </div>
-    <div class="mr-metric">
-      <div class="mrm-label">最大单日净流出</div>
-      <div class="mrm-value" style="color:${GREEN}">${mr.max_outflow === 0 ? '无' : mr.max_outflow.toFixed(1) + ' 亿'}</div>
-      <div class="mrm-sub">${mr.max_outflow === 0 ? '全月无净流出' : '当日谷值'}</div>
-    </div>`;
-
-  // Stock tables
-  let stocksHtml = '';
-  const hasBuy = mr.top_buy && mr.top_buy.length > 0;
-  const hasSell = mr.top_sell && mr.top_sell.length > 0;
-
-  if (hasBuy || hasSell) {
-    stocksHtml += '<div class="two-col" style="margin-top:4px;">';
-
-    // Buy side
-    stocksHtml += '<div><div style="font-size:14px;font-weight:600;margin-bottom:10px;color:var(--red);">月净买入 TOP10</div>';
-    if (hasBuy) {
-      stocksHtml += '<table class="mini-table"><tr><th>#</th><th>股票名称</th><th>代码</th><th>净买入额</th></tr>';
-      stocksHtml += mr.top_buy.map(s =>
-        '<tr><td>' + s.rank + '</td><td>' + s.name + '</td><td class="stock-code">' + s.code + '</td><td style="color:' + RED + '">+' + s.amount.toFixed(1) + ' 亿</td></tr>'
-      ).join('');
-      stocksHtml += '</table>';
-    }
-    stocksHtml += '</div>';
-
-    // Sell side
-    stocksHtml += '<div><div style="font-size:14px;font-weight:600;margin-bottom:10px;color:var(--green);">月净卖出 TOP10</div>';
-    if (hasSell) {
-      stocksHtml += '<table class="mini-table"><tr><th>#</th><th>股票名称</th><th>代码</th><th>净卖出额</th></tr>';
-      stocksHtml += mr.top_sell.map(s =>
-        '<tr><td>' + s.rank + '</td><td>' + s.name + '</td><td class="stock-code">' + s.code + '</td><td style="color:' + GREEN + '">' + s.amount.toFixed(1) + ' 亿</td></tr>'
-      ).join('');
-      stocksHtml += '</table>';
-    } else {
-      stocksHtml += '<div style="text-align:center;color:var(--text-tertiary);padding:16px;font-size:13px;">本月无显著净卖出个股</div>';
-    }
-    stocksHtml += '</div>';
-    stocksHtml += '</div>';
+  // Scroll to show selected date, or rightmost if latest
+  const scrollEl = document.getElementById('daily-chart-scroll');
+  if (selIdx >= 0) {
+    const barCenter = (selIdx * (BAR_W + GAP)) + PADDING/2;
+    const viewW = scrollEl.clientWidth;
+    scrollEl.scrollLeft = Math.max(0, barCenter - viewW/2);
   } else {
-    stocksHtml = '<div class="no-detail" style="margin-top:4px;">本月个股排名数据尚在累积中，仅提供月度流向汇总</div>';
+    scrollEl.scrollLeft = scrollEl.scrollWidth;
   }
-
-  // Sector flows
-  let sectorHtml = '';
-  if (mr.sector_flows && mr.sector_flows.length > 0) {
-    const maxAbs = Math.max(...mr.sector_flows.map(s => Math.abs(s.net_flow)));
-    sectorHtml = `
-    <div class="sector-section">
-      <div class="sector-title">板块资金流向</div>
-      <div class="sector-legend">
-        <span><span class="sld-dot" style="background:#E74C3C"></span>资金净流入板块</span>
-        <span><span class="sld-dot" style="background:#4CAF50"></span>资金净流出板块</span>
-      </div>
-      <div class="sector-grid">
-        ${mr.sector_flows.map(s => {
-          const pct = (Math.abs(s.net_flow) / maxAbs * 85).toFixed(0);
-          const isIn = s.net_flow >= 0;
-          const cls = isIn ? 'inflow' : 'outflow';
-          const trendCls = isIn ? 'sf-inflow' : 'sf-outflow';
-          return `
-        <div class="sector-row">
-          <span class="sr-name">${s.sector}</span>
-          <div class="sr-bar-wrap">
-            <div class="sr-bar ${cls}" style="width:${Math.max(3, parseInt(pct))}%">${s.comment}</div>
-          </div>
-          <span class="sr-amount" style="color:${isIn ? RED : GREEN}">${isIn ? '+' : ''}${s.net_flow.toFixed(1)} 亿</span>
-          <span class="sr-trend ${trendCls}">${s.trend}</span>
-        </div>`;
-        }).join('')}
-      </div>
-    </div>`;
-  }
-
-  // Commentary
-  let commentaryHtml = '';
-  if (mr.commentary) {
-    commentaryHtml = '<div class="mr-commentary"><strong>📈 市场特征与资金动向：</strong><br>' + mr.commentary + '</div>';
-  }
-
-  panel.innerHTML = `
-    <div class="mr-header">
-      <span class="mr-month">${mr.label}</span>
-      <span class="mr-trend ${trendClass}">${trendText}</span>
-    </div>
-    <div class="mr-subtitle">月度统计报告 · 数据来源：东方财富 · 截至 ${month} 月末</div>
-    <div class="mr-metrics">${metricsHtml}</div>
-    ${stocksHtml}
-    ${sectorHtml}
-    ${commentaryHtml}
-  `;
-  panel.classList.add('show');
 }
 
 // ============================================================
-// Init
-// ============================================================
-(async function() {
-  await loadData();
-  if (!gData || !gData.reports || !gData.reports.length) {
-    document.body.innerHTML = '<div style="text-align:center;padding:100px 20px;color:var(--text-tertiary);">数据加载失败，请稍后重试</div>';
-    return;
-  }
-
-  const latest = gData.reports[gData.reports.length - 1];
-  const latestMonth = latest.date.substring(0, 7);
-  renderDashboard(latest.date);
-  // Pre-render history tab in background
-  renderMonths();
-  filterMonth(latestMonth);
-  // Default: show dashboard tab
-  switchTab('dashboard');
-
-  // Render static sector chart (only once)
-  renderSectorChart();
-})();
-
-// ============================================================
-// Sector chart (static, rendered once)
+// Sector Chart
 // ============================================================
 function renderSectorChart() {
-  const ctx = document.getElementById('sectorChart');
-  if (!ctx) return;
-  new Chart(ctx, {
+  if (gSectorChart) gSectorChart.destroy();
+
+  gSectorChart = new Chart(document.getElementById('sectorChart'), {
     type: 'bar',
     data: {
       labels: ['资讯科技','非必需消费','金融','能源','地产建筑','医疗保健','工业'],
@@ -1045,6 +501,161 @@ function renderSectorChart() {
     }
   });
 }
+
+// ============================================================
+// Tab switching
+// ============================================================
+function switchTab(tab) {
+  document.getElementById('dashboardSection').classList.toggle('active', tab === 'dashboard');
+  document.getElementById('historySection').classList.toggle('active', tab === 'history');
+  document.getElementById('tabDashboard').classList.toggle('active', tab === 'dashboard');
+  document.getElementById('tabHistory').classList.toggle('active', tab === 'history');
+
+  // Trigger chart resize on tab switch
+  setTimeout(() => {
+    if (gDailyChart) gDailyChart.resize();
+    if (gSectorChart) gSectorChart.resize();
+  }, 100);
+}
+
+// ============================================================
+// History Tab
+// ============================================================
+const MONTHS = ['2026-01','2026-02','2026-03','2026-04','2026-05','2026-06','2026-07','2026-08'];
+const MONTH_LABELS = ['1月','2月','3月','4月','5月','6月','7月','8月'];
+
+function renderMonths() {
+  const grid = document.getElementById('monthGrid');
+  grid.innerHTML = MONTHS.map((m, i) =>
+    '<div class="month-card" data-month="' + m + '" onclick="filterMonth(\'' + m + '\')">' + MONTH_LABELS[i] + '</div>'
+  ).join('');
+}
+
+function filterMonth(month) {
+  document.querySelectorAll('.month-card').forEach(el => el.classList.remove('sel'));
+  document.querySelector('.month-card[data-month="' + month + '"]')?.classList.add('sel');
+
+  const reports = gData.reports.filter(r => r.date.startsWith(month));
+  const reversed = [...reports].reverse();
+  const listEl = document.getElementById('reportList');
+  listEl.innerHTML = reversed.map(r => {
+    const d = new Date(r.date);
+    const dayName = WEEKDAYS[d.getDay()];
+    const hasDetail = !!(r.top_buy || r.top_sell);
+    return '<div class="r-item' + (r.date === gSelectedDate ? ' active' : '') + '" data-date="' + r.date + '" ' +
+      'onclick="renderDashboard(\'' + r.date + '\')">' +
+      '<div class="r-left">' +
+      '<span class="r-date">' + r.date + '</span>' +
+      '<span class="r-day">周' + dayName + '</span>' +
+      (hasDetail ? '<span class="r-tag" style="background:var(--red-bg);color:var(--red)">含个股排名</span>' : '') +
+      '</div>' +
+      '<div><span class="r-flow" style="color:' + (r.total_net >= 0 ? RED : GREEN) + '">' +
+      (r.total_net >= 0 ? '+' : '') + r.total_net.toFixed(2) + ' 亿</span></div>' +
+      '</div>';
+  }).join('');
+
+  // Render monthly report if month data exists
+  renderMonthlyReport(month);
+}
+
+function renderMonthlyReport(month) {
+  const panel = document.getElementById('monthlyReport');
+  if (!gData.monthly_reports) { panel.style.display = 'none'; return; }
+
+  const mr = gData.monthly_reports.find(m => m.month === month);
+  if (!mr) { panel.style.display = 'none'; return; }
+
+  panel.style.display = '';
+
+  // Trend
+  let trendClass = 'up';
+  let trendText = '月度净流入';
+  if (mr.trend === '流出') { trendClass = 'down'; trendText = '月度净流出'; }
+  else if (mr.trend === '震荡') { trendClass = 'mix'; trendText = '资金震荡'; }
+
+  // Metrics
+  const metricsHtml =
+    '<div class="mr-metric"><div class="mr-val" style="color:' + (mr.total_net >= 0 ? RED : GREEN) + '">' +
+    (mr.total_net >= 0 ? '+' : '') + mr.total_net.toFixed(1) + ' 亿</div><div class="mr-lbl">月度净流入</div><div class="mr-sub">合计</div></div>' +
+    '<div class="mr-metric"><div class="mr-val">' + (mr.avg_daily >= 0 ? '+' : '') + mr.avg_daily.toFixed(1) + ' 亿</div><div class="mr-lbl">日均净流向</div><div class="mr-sub">' +
+    mr.inflow_days + '天净流入 / ' + mr.outflow_days + '天净流出</div></div>' +
+    '<div class="mr-metric"><div class="mr-val" style="color:' + RED + '">+' + mr.max_inflow.toFixed(1) + ' 亿</div><div class="mr-lbl">最大单日净流入</div><div class="mr-sub">峰值</div></div>' +
+    '<div class="mr-metric"><div class="mr-val" style="color:' + GREEN + '">' + (mr.max_outflow <= 0 ? mr.max_outflow.toFixed(1) : '-' + mr.max_outflow.toFixed(1)) + ' 亿</div><div class="mr-lbl">最大单日净流出</div><div class="mr-sub">谷值</div></div>';
+
+  // Stock tables
+  let stocksHtml = '';
+  if (mr.top_buy && mr.top_buy.length > 0) {
+    stocksHtml += '<div class="mr-section-title">月净买入 TOP10 个股</div><table class="mr-table"><tr><th>#</th><th>股票名称</th><th>代码</th><th>净买入额</th></tr>';
+    stocksHtml += mr.top_buy.map(s =>
+      '<tr><td>' + s.rank + '</td><td>' + s.name + '</td><td>' + s.code + '</td><td class="red">+' + s.amount.toFixed(1) + ' 亿</td></tr>'
+    ).join('');
+    stocksHtml += '</table>';
+  }
+  if (mr.top_sell && mr.top_sell.length > 0) {
+    stocksHtml += '<div class="mr-section-title">月净卖出 TOP10 个股</div><table class="mr-table"><tr><th>#</th><th>股票名称</th><th>代码</th><th>净卖出额</th></tr>';
+    stocksHtml += mr.top_sell.map(s =>
+      '<tr><td>' + s.rank + '</td><td>' + s.name + '</td><td>' + s.code + '</td><td class="green">' + s.amount.toFixed(1) + ' 亿</td></tr>'
+    ).join('');
+    stocksHtml += '</table>';
+  }
+
+  // Sector flows
+  let sectorHtml = '';
+  if (mr.sector_flows && mr.sector_flows.length > 0) {
+    const maxAbs = Math.max(...mr.sector_flows.map(s => Math.abs(s.net_flow)), 1);
+    sectorHtml = '<div class="mr-sector"><div class="mr-section-title">板块资金流入/流出</div>' +
+      '<div class="sf-header"><span class="sf-legend-dot" style="background:#E24B4A"></span>流入 <span class="sf-legend-dot" style="background:#639922;margin-left:8px;"></span>流出</div>';
+    sectorHtml += mr.sector_flows.map(s => {
+      const isInflow = s.net_flow >= 0;
+      const pct = Math.abs(s.net_flow) / maxAbs * 100;
+      const barClass = isInflow ? 'inflow' : 'outflow';
+      const trendBg = isInflow ? 'var(--red-bg)' : 'var(--green-bg)';
+      const trendColor = isInflow ? 'var(--red)' : 'var(--green)';
+      return '<div class="sector-row">' +
+        '<span class="sr-name">' + s.sector + '</span>' +
+        '<div class="sr-bar-wrap"><div class="sr-bar ' + barClass + '" style="width:' + pct + '%"></div></div>' +
+        '<span class="sr-amount" style="color:' + (isInflow ? RED : GREEN) + '">' + (isInflow ? '+' : '') + s.net_flow.toFixed(1) + ' 亿</span>' +
+        '<span class="sr-trend" style="background:' + trendBg + ';color:' + trendColor + '">' + s.trend + '</span>' +
+        '</div>';
+    }).join('');
+    sectorHtml += '</div>';
+  }
+
+  // Commentary
+  let commentaryHtml = '';
+  if (mr.commentary) {
+    commentaryHtml = '<div class="mr-commentary"><strong>市场特征与资金动向：</strong><br>' + mr.commentary + '</div>';
+  }
+
+  panel.innerHTML =
+    '<div class="mr-header">' +
+      '<span class="mr-month">' + mr.label + '</span>' +
+      '<span class="mr-trend ' + trendClass + '">' + trendText + '</span>' +
+    '</div>' +
+    '<div class="mr-subtitle">月度统计报告 · 数据来源：东方财富 · 截至 ' + month + ' 月末</div>' +
+    '<div class="mr-metrics">' + metricsHtml + '</div>' +
+    stocksHtml +
+    sectorHtml +
+    commentaryHtml;
+}
+
+// ============================================================
+// Init
+// ============================================================
+(async function() {
+  await loadData();
+  if (!gData || !gData.reports || !gData.reports.length) {
+    document.body.innerHTML = '<div style="text-align:center;padding:100px 20px;color:var(--text-tertiary);">数据加载失败，请稍后重试</div>';
+    return;
+  }
+
+  const latest = gData.reports[gData.reports.length - 1];
+  const latestMonth = latest.date.substring(0, 7);
+  renderDashboard(latest.date);
+  renderMonths();
+  filterMonth(latestMonth);
+  switchTab('dashboard');
+})();
 </script>
 
 </body>

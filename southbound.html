@@ -57,13 +57,19 @@
     padding: 6px 14px;
     border-radius: 6px;
     transition: all 0.2s;
+    cursor: pointer;
   }
   .nav-bar a:hover { color: #fff; background: rgba(255,255,255,0.1); }
+  .nav-bar a.active { color: #fff; background: rgba(255,255,255,0.1); }
   .nav-bar .nav-info {
     color: #636380;
     font-size: 12px;
     margin-left: 12px;
   }
+
+  /* Tab visibility */
+  .tab-panel { display: none; }
+  .tab-panel.show { display: block; }
 
   .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
 
@@ -320,15 +326,16 @@
 
 <nav class="nav-bar">
   <span class="brand">南向资金看板</span>
-  <a href="#" onclick="goToDashboard()" style="color:#fff;background:rgba(255,255,255,0.1);">实时看板</a>
-  <a href="#" onclick="goToHistory()">历史报告</a>
+  <a id="tabDashboard" class="active" onclick="switchTab('dashboard')">实时看板</a>
+  <a id="tabHistory" onclick="switchTab('history')">历史报告</a>
   <span class="nav-info" id="navDataInfo"></span>
 </nav>
 
 <div class="container">
 
-<!-- ==================== Dashboard Section ==================== -->
-<div class="dash-section" id="dashboardSection">
+<!-- ==================== Dashboard Tab ==================== -->
+<div class="tab-panel show" id="dashboardSection">
+  <div class="dash-section">
   <div class="date-badge" id="dateBadge"></div>
 
   <div class="metric-grid" id="metricCards"></div>
@@ -347,10 +354,12 @@
     <div class="chart-wrap"><canvas id="yearChart"></canvas></div>
     <div class="chart-note">1月—4月22日为估算值，4月23日起为逐日精确数据</div>
   </div>
+  </div>
 </div>
 
-<!-- ==================== History Section ==================== -->
-<div class="history-section" id="historySection">
+<!-- ==================== History Tab ==================== -->
+<div class="tab-panel" id="historySection">
+  <div class="history-section">
   <div class="section-title">历史报告</div>
   <div class="month-grid" id="monthGrid"></div>
 
@@ -358,6 +367,7 @@
   <div class="monthly-report" id="monthlyReport"></div>
 
   <div class="report-list" id="reportList"></div>
+  </div>
 </div>
 
 </div>
@@ -508,7 +518,26 @@ function renderDashboard(date) {
   });
 
   // Scroll to dashboard
-  document.getElementById('dashboardSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  switchTab('dashboard');
+}
+
+// ============================================================
+// Tab switching
+// ============================================================
+function switchTab(tab) {
+  document.getElementById('dashboardSection').classList.toggle('show', tab === 'dashboard');
+  document.getElementById('historySection').classList.toggle('show', tab === 'history');
+
+  document.getElementById('tabDashboard').classList.toggle('active', tab === 'dashboard');
+  document.getElementById('tabHistory').classList.toggle('active', tab === 'history');
+
+  if (tab === 'history') {
+    // Trigger chart resize when history tab becomes visible
+    if (gYearChart) setTimeout(() => gYearChart.resize(), 100);
+  } else {
+    // Trigger chart resize when dashboard tab becomes visible
+    if (gYearChart) setTimeout(() => gYearChart.resize(), 100);
+  }
 }
 
 // ============================================================
@@ -560,7 +589,7 @@ function renderYearChart(data, selectedDate) {
           const mmdd = labels[idx];
           const fullDate = '2026-' + mmdd;
           renderDashboard(fullDate);
-          goToDashboard();
+          switchTab('dashboard');
         }
       },
       scales: {
@@ -602,7 +631,7 @@ function renderHistory() {
 
     return '<div class="r-item' + (r.date === gSelectedDate ? ' active' : '') + '" ' +
       'data-date="' + r.date + '" ' +
-      'onclick="renderDashboard(\'' + r.date + '\'); goToDashboard();">' +
+      'onclick="renderDashboard(\'' + r.date + '\'); switchTab(\'dashboard\');">' +
       '<div class="r-left">' +
       '<span class="r-date">' + r.date + '</span>' +
       '<span class="r-day">周' + dayName + '</span>' +
@@ -662,7 +691,7 @@ function filterMonth(month) {
 
     return '<div class="r-item' + (r.date === gSelectedDate ? ' active' : '') + '" ' +
       'data-date="' + r.date + '" ' +
-      'onclick="renderDashboard(\'' + r.date + '\'); goToDashboard();">' +
+      'onclick="renderDashboard(\'' + r.date + '\'); switchTab(\'dashboard\');">' +
       '<div class="r-left">' +
       '<span class="r-date">' + r.date + '</span>' +
       '<span class="r-day">周' + dayName + '</span>' +
@@ -768,14 +797,6 @@ function renderMonthlyReport(month) {
   panel.classList.add('show');
 }
 
-function goToDashboard() {
-  document.getElementById('dashboardSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-function goToHistory() {
-  document.getElementById('historySection').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
 // ============================================================
 // Init
 // ============================================================
@@ -789,11 +810,11 @@ function goToHistory() {
   const latest = gData.reports[gData.reports.length - 1];
   const latestMonth = latest.date.substring(0, 7);
   renderDashboard(latest.date);
+  // Pre-render history tab in background
   renderMonths();
-  // Default: show latest month's stats
   filterMonth(latestMonth);
-  // Scroll to top on load
-  goToDashboard();
+  // Default: show dashboard tab
+  switchTab('dashboard');
 })();
 </script>
 

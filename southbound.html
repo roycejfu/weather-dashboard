@@ -117,6 +117,7 @@
   .mr-section-title { font-size: 14px; font-weight: 600; margin: 18px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
   .mr-table { width: 100%; }
   .mr-commentary { background: #FFF9E6; border: 1px solid #F0D77B; border-radius: var(--radius-sm); padding: 14px 18px; font-size: 13px; color: #5D4E1B; line-height: 1.7; margin-top: 16px; }
+  .mr-data-note { background: #F0F4FF; border: 1px solid #B8C9F0; border-radius: var(--radius-sm); padding: 14px 18px; font-size: 13px; color: #3B4E7A; line-height: 1.7; margin-top: 16px; }
 
   /* Sector flows */
   .mr-sector { margin: 16px 0; }
@@ -582,22 +583,8 @@ function renderMonthlyReport(month) {
     '<div class="mr-metric"><div class="mr-val" style="color:' + RED + '">+' + mr.max_inflow.toFixed(1) + ' 亿</div><div class="mr-lbl">最大单日净流入</div><div class="mr-sub">峰值</div></div>' +
     '<div class="mr-metric"><div class="mr-val" style="color:' + GREEN + '">' + (mr.max_outflow <= 0 ? mr.max_outflow.toFixed(1) : '-' + mr.max_outflow.toFixed(1)) + ' 亿</div><div class="mr-lbl">最大单日净流出</div><div class="mr-sub">谷值</div></div>';
 
-  // Stock tables
-  let stocksHtml = '';
-  if (mr.top_buy && mr.top_buy.length > 0) {
-    stocksHtml += '<div class="mr-section-title">月净买入 TOP10 个股</div><table class="mr-table"><tr><th>#</th><th>股票名称</th><th>代码</th><th>净买入额</th></tr>';
-    stocksHtml += mr.top_buy.map(s =>
-      '<tr><td>' + s.rank + '</td><td>' + s.name + '</td><td>' + s.code + '</td><td class="red">+' + s.amount.toFixed(1) + ' 亿</td></tr>'
-    ).join('');
-    stocksHtml += '</table>';
-  }
-  if (mr.top_sell && mr.top_sell.length > 0) {
-    stocksHtml += '<div class="mr-section-title">月净卖出 TOP10 个股</div><table class="mr-table"><tr><th>#</th><th>股票名称</th><th>代码</th><th>净卖出额</th></tr>';
-    stocksHtml += mr.top_sell.map(s =>
-      '<tr><td>' + s.rank + '</td><td>' + s.name + '</td><td>' + s.code + '</td><td class="green">' + s.amount.toFixed(1) + ' 亿</td></tr>'
-    ).join('');
-    stocksHtml += '</table>';
-  }
+  // Stock ranking placeholder — accumulating real data
+  const stocksHtml = '<div class="mr-data-note"><strong>月度个股排名（数据积累中）</strong><br>自2026年8月11日起，每日自动化任务将存储当日十大成交个股数据。积累足够交易日后，系统将自动生成真实月度TOP10买卖排名。</div>';
 
   // Sector flows
   let sectorHtml = '';

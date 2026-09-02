@@ -721,7 +721,83 @@
       "label": "08-03",
       "sh_net": 64.28,
       "sz_net": 46.03,
-      "commentary": "08月03日收盘：南向资金净买入++110.31亿港元（沪+64.28亿/深+46.03亿）。个股明细缺失，数据由历史API补录。"
+      "commentary": "08月03日收盘：南向资金净买入++110.31亿港元（沪+64.28亿/深+46.03亿）。个股明细缺失，数据由历史API补录。",
+      "top_buy": [
+        {
+          "rank": 1,
+          "name": "盈富基金",
+          "code": "02800.HK",
+          "amount": 47.5
+        },
+        {
+          "rank": 2,
+          "name": "阿里巴巴-W",
+          "code": "09988.HK",
+          "amount": 41.69
+        },
+        {
+          "rank": 3,
+          "name": "腾讯控股",
+          "code": "00700.HK",
+          "amount": 24.32
+        },
+        {
+          "rank": 4,
+          "name": "美团-W",
+          "code": "03690.HK",
+          "amount": 5.81
+        },
+        {
+          "rank": 5,
+          "name": "南方恒生科技",
+          "code": "03033.HK",
+          "amount": 3.17
+        },
+        {
+          "rank": 6,
+          "name": "小米集团-W",
+          "code": "01810.HK",
+          "amount": 2.94
+        }
+      ],
+      "top_sell": [
+        {
+          "rank": 1,
+          "name": "中芯国际",
+          "code": "00981.HK",
+          "amount": -10.64
+        },
+        {
+          "rank": 2,
+          "name": "华虹宏力",
+          "code": "01347.HK",
+          "amount": -4.02
+        },
+        {
+          "rank": 3,
+          "name": "建滔积层板",
+          "code": "01888.HK",
+          "amount": -3.11
+        },
+        {
+          "rank": 4,
+          "name": "智谱",
+          "code": "02513.HK",
+          "amount": -1.74
+        },
+        {
+          "rank": 5,
+          "name": "兆易创新",
+          "code": "03986.HK",
+          "amount": -1.73
+        },
+        {
+          "rank": 6,
+          "name": "长飞光纤光缆",
+          "code": "06869.HK",
+          "amount": -0.33
+        }
+      ]
     },
     {
       "date": "2026-08-04",
@@ -729,7 +805,71 @@
       "label": "08-04",
       "sh_net": -3.8,
       "sz_net": 29.5,
-      "commentary": "08月04日收盘：南向资金净买入++25.70亿港元（沪-3.80亿/深+29.50亿）。个股明细缺失，数据由历史API补录。"
+      "commentary": "08月04日收盘：南向资金净买入++25.70亿港元（沪-3.80亿/深+29.50亿）。个股明细缺失，数据由历史API补录。",
+      "top_buy": [
+        {
+          "rank": 1,
+          "name": "阿里巴巴-W",
+          "code": "09988.HK",
+          "amount": 15.49
+        },
+        {
+          "rank": 2,
+          "name": "华虹宏力",
+          "code": "01347.HK",
+          "amount": 11.83
+        },
+        {
+          "rank": 3,
+          "name": "中芯国际",
+          "code": "00981.HK",
+          "amount": 10.62
+        },
+        {
+          "rank": 4,
+          "name": "智谱",
+          "code": "02513.HK",
+          "amount": 7.96
+        },
+        {
+          "rank": 5,
+          "name": "建滔积层板",
+          "code": "01888.HK",
+          "amount": 5.11
+        },
+        {
+          "rank": 6,
+          "name": "小米集团-W",
+          "code": "01810.HK",
+          "amount": 3.26
+        },
+        {
+          "rank": 7,
+          "name": "长飞光纤光缆",
+          "code": "06869.HK",
+          "amount": 2.47
+        },
+        {
+          "rank": 8,
+          "name": "兆易创新",
+          "code": "03986.HK",
+          "amount": 0.48
+        }
+      ],
+      "top_sell": [
+        {
+          "rank": 1,
+          "name": "美团-W",
+          "code": "03690.HK",
+          "amount": -12.27
+        },
+        {
+          "rank": 2,
+          "name": "腾讯控股",
+          "code": "00700.HK",
+          "amount": -7.23
+        }
+      ]
     },
     {
       "date": "2026-08-05",
@@ -737,7 +877,83 @@
       "label": "08-05",
       "sh_net": -15.77,
       "sz_net": 1.79,
-      "commentary": "08月05日收盘：南向资金净卖出-13.98亿港元（沪-15.77亿/深+1.79亿）。个股明细缺失，数据由历史API补录。"
+      "commentary": "08月05日收盘：南向资金净卖出-13.98亿港元（沪-15.77亿/深+1.79亿）。个股明细缺失，数据由历史API补录。",
+      "top_buy": [
+        {
+          "rank": 1,
+          "name": "中芯国际",
+          "code": "00981.HK",
+          "amount": 11.52
+        },
+        {
+          "rank": 2,
+          "name": "华虹宏力",
+          "code": "01347.HK",
+          "amount": 9.9
+        },
+        {
+          "rank": 3,
+          "name": "建滔积层板",
+          "code": "01888.HK",
+          "amount": 8.81
+        },
+        {
+          "rank": 4,
+          "name": "智谱",
+          "code": "02513.HK",
+          "amount": 6.42
+        },
+        {
+          "rank": 5,
+          "name": "长飞光纤光缆",
+          "code": "06869.HK",
+          "amount": 4.78
+        },
+        {
+          "rank": 6,
+          "name": "阿里巴巴-W",
+          "code": "09988.HK",
+          "amount": 2.76
+        },
+        {
+          "rank": 7,
+          "name": "兆易创新",
+          "code": "03986.HK",
+          "amount": 0.93
+        }
+      ],
+      "top_sell": [
+        {
+          "rank": 1,
+          "name": "盈富基金",
+          "code": "02800.HK",
+          "amount": -20.31
+        },
+        {
+          "rank": 2,
+          "name": "腾讯控股",
+          "code": "00700.HK",
+          "amount": -8.44
+        },
+        {
+          "rank": 3,
+          "name": "中国海洋石油",
+          "code": "00883.HK",
+          "amount": -6.17
+        },
+        {
+          "rank": 4,
+          "name": "美团-W",
+          "code": "03690.HK",
+          "amount": -0.88
+        },
+        {
+          "rank": 5,
+          "name": "胜宏科技",
+          "code": "02476.HK",
+          "amount": -0.07
+        }
+      ]
     },
     {
       "date": "2026-08-06",
@@ -745,7 +961,77 @@
       "label": "08-06",
       "sh_net": 32.57,
       "sz_net": -47.18,
-      "commentary": "08月06日收盘：南向资金净卖出-14.61亿港元（沪+32.57亿/深-47.18亿）。个股明细缺失，数据由历史API补录。"
+      "commentary": "08月06日收盘：南向资金净卖出-14.61亿港元（沪+32.57亿/深-47.18亿）。个股明细缺失，数据由历史API补录。",
+      "top_buy": [
+        {
+          "rank": 1,
+          "name": "MINIMAX-W",
+          "code": "00100.HK",
+          "amount": 26.97
+        },
+        {
+          "rank": 2,
+          "name": "建滔积层板",
+          "code": "01888.HK",
+          "amount": 7.53
+        },
+        {
+          "rank": 3,
+          "name": "长飞光纤光缆",
+          "code": "06869.HK",
+          "amount": 5.93
+        },
+        {
+          "rank": 4,
+          "name": "兆易创新",
+          "code": "03986.HK",
+          "amount": 0.05
+        }
+      ],
+      "top_sell": [
+        {
+          "rank": 1,
+          "name": "腾讯控股",
+          "code": "00700.HK",
+          "amount": -22.0
+        },
+        {
+          "rank": 2,
+          "name": "阿里巴巴-W",
+          "code": "09988.HK",
+          "amount": -16.27
+        },
+        {
+          "rank": 3,
+          "name": "中芯国际",
+          "code": "00981.HK",
+          "amount": -10.76
+        },
+        {
+          "rank": 4,
+          "name": "小米集团-W",
+          "code": "01810.HK",
+          "amount": -3.22
+        },
+        {
+          "rank": 5,
+          "name": "泡泡玛特",
+          "code": "09992.HK",
+          "amount": -1.92
+        },
+        {
+          "rank": 6,
+          "name": "华虹宏力",
+          "code": "01347.HK",
+          "amount": -1.86
+        },
+        {
+          "rank": 7,
+          "name": "智谱",
+          "code": "02513.HK",
+          "amount": -0.61
+        }
+      ]
     },
     {
       "date": "2026-08-07",
@@ -754,8 +1040,76 @@
       "total_net": -7.78,
       "label": "08-07",
       "commentary": "08月07日收盘：南向资金净卖出-7.78亿港元（沪+5.71亿/深-13.49亿）。个股明细缺失，数据由历史API补录。",
-      "top_buy": [],
-      "top_sell": []
+      "top_buy": [
+        {
+          "rank": 1,
+          "name": "MINIMAX-W",
+          "code": "00100.HK",
+          "amount": 22.26
+        },
+        {
+          "rank": 2,
+          "name": "药明生物",
+          "code": "02269.HK",
+          "amount": 7.78
+        },
+        {
+          "rank": 3,
+          "name": "建滔积层板",
+          "code": "01888.HK",
+          "amount": 6.34
+        },
+        {
+          "rank": 4,
+          "name": "兆易创新",
+          "code": "03986.HK",
+          "amount": 4.29
+        },
+        {
+          "rank": 5,
+          "name": "中芯国际",
+          "code": "00981.HK",
+          "amount": 3.98
+        },
+        {
+          "rank": 6,
+          "name": "华虹宏力",
+          "code": "01347.HK",
+          "amount": 1.88
+        },
+        {
+          "rank": 7,
+          "name": "建滔集团",
+          "code": "00148.HK",
+          "amount": 0.53
+        },
+        {
+          "rank": 8,
+          "name": "智谱",
+          "code": "02513.HK",
+          "amount": 0.28
+        }
+      ],
+      "top_sell": [
+        {
+          "rank": 1,
+          "name": "腾讯控股",
+          "code": "00700.HK",
+          "amount": -21.88
+        },
+        {
+          "rank": 2,
+          "name": "阿里巴巴-W",
+          "code": "09988.HK",
+          "amount": -16.84
+        },
+        {
+          "rank": 3,
+          "name": "长飞光纤光缆",
+          "code": "06869.HK",
+          "amount": -0.36
+        }
+      ]
     },
     {
       "date": "2026-08-10",
@@ -764,8 +1118,82 @@
       "total_net": 20.21,
       "label": "08-10",
       "commentary": "08月10日收盘：南向资金净买入++20.21亿港元（沪+27.96亿/深-7.76亿）。个股明细缺失，数据由历史API补录。",
-      "top_buy": [],
-      "top_sell": []
+      "top_buy": [
+        {
+          "rank": 1,
+          "name": "MINIMAX-W",
+          "code": "00100.HK",
+          "amount": 10.14
+        },
+        {
+          "rank": 2,
+          "name": "建滔积层板",
+          "code": "01888.HK",
+          "amount": 6.0
+        },
+        {
+          "rank": 3,
+          "name": "金斯瑞生物科技",
+          "code": "01548.HK",
+          "amount": 4.72
+        },
+        {
+          "rank": 4,
+          "name": "长飞光纤光缆",
+          "code": "06869.HK",
+          "amount": 4.23
+        },
+        {
+          "rank": 5,
+          "name": "小米集团-W",
+          "code": "01810.HK",
+          "amount": 3.85
+        },
+        {
+          "rank": 6,
+          "name": "腾讯控股",
+          "code": "00700.HK",
+          "amount": 3.76
+        },
+        {
+          "rank": 7,
+          "name": "兆易创新",
+          "code": "03986.HK",
+          "amount": 3.15
+        },
+        {
+          "rank": 8,
+          "name": "智谱",
+          "code": "02513.HK",
+          "amount": 3.14
+        },
+        {
+          "rank": 9,
+          "name": "阿里巴巴-W",
+          "code": "09988.HK",
+          "amount": 0.81
+        },
+        {
+          "rank": 10,
+          "name": "药明生物",
+          "code": "02269.HK",
+          "amount": 0.29
+        }
+      ],
+      "top_sell": [
+        {
+          "rank": 1,
+          "name": "中芯国际",
+          "code": "00981.HK",
+          "amount": -4.52
+        },
+        {
+          "rank": 2,
+          "name": "建滔集团",
+          "code": "00148.HK",
+          "amount": -0.5
+        }
+      ]
     },
     {
       "date": "2026-08-11",
@@ -876,8 +1304,76 @@
       "total_net": -29.06,
       "label": "08-12",
       "commentary": "8月12日收盘：南向资金净卖出-29.06亿港元（沪-18.82亿/深-10.24亿），两市同步流出。当日十大成交个股数据无法追溯（东方财富仅保留当日明细），资金流总量来自历史API补录。",
-      "top_buy": [],
-      "top_sell": []
+      "top_buy": [
+        {
+          "rank": 1,
+          "name": "MINIMAX-W",
+          "code": "00100.HK",
+          "amount": 7.09
+        },
+        {
+          "rank": 2,
+          "name": "腾讯控股",
+          "code": "00700.HK",
+          "amount": 6.83
+        },
+        {
+          "rank": 3,
+          "name": "中芯国际",
+          "code": "00981.HK",
+          "amount": 4.57
+        },
+        {
+          "rank": 4,
+          "name": "智谱",
+          "code": "02513.HK",
+          "amount": 4.17
+        },
+        {
+          "rank": 5,
+          "name": "小米集团-W",
+          "code": "01810.HK",
+          "amount": 1.77
+        },
+        {
+          "rank": 6,
+          "name": "美团-W",
+          "code": "03690.HK",
+          "amount": 1.06
+        }
+      ],
+      "top_sell": [
+        {
+          "rank": 1,
+          "name": "阿里巴巴-W",
+          "code": "09988.HK",
+          "amount": -14.61
+        },
+        {
+          "rank": 2,
+          "name": "建滔积层板",
+          "code": "01888.HK",
+          "amount": -9.79
+        },
+        {
+          "rank": 3,
+          "name": "华虹宏力",
+          "code": "01347.HK",
+          "amount": -4.96
+        },
+        {
+          "rank": 4,
+          "name": "长飞光纤光缆",
+          "code": "06869.HK",
+          "amount": -2.45
+        },
+        {
+          "rank": 5,
+          "name": "兆易创新",
+          "code": "03986.HK",
+          "amount": -1.29
+        }
+      ]
     },
     {
       "date": "2026-08-13",
@@ -2357,7 +2853,7 @@
     ]
   },
   "cumulative_total": 31851.42,
-  "generated_at": "2026-09-02 11:07:06",
+  "generated_at": "2026-09-02 11:17:10",
   "monthly_reports": [
     {
       "month": "2026-01",
@@ -2949,5 +3445,499 @@
       ]
     }
   ],
-  "_note": "月度个股排名尚在积累真实数据中，当前月度报告仅含净流入汇总、板块资金流和市场评述"
+  "_note": "月度个股排名尚在积累真实数据中，当前月度报告仅含净流入汇总、板块资金流和市场评述",
+  "monthly_stock_flow": {
+    "2026-08": {
+      "month": "2026-08",
+      "trade_days": 21,
+      "days_with_stock_data": 21,
+      "month_total_net": 103.8,
+      "stock_count": 34,
+      "note": "仅统计当日进入十大成交个股榜的标的，未上榜日不计入；days=上榜天数",
+      "top_buy": [
+        {
+          "code": "00100.HK",
+          "name": "MINIMAX-W",
+          "net": 101.18,
+          "gross": 112.96,
+          "days": 16,
+          "buy_days": 12,
+          "sell_days": 4,
+          "max_buy": 26.97,
+          "max_buy_date": "2026-08-06",
+          "max_sell": -4.09,
+          "max_sell_date": "2026-08-31",
+          "consistency": 75.0,
+          "conversion": 90.0,
+          "concentration": 24.0
+        },
+        {
+          "code": "09988.HK",
+          "name": "阿里巴巴-W",
+          "net": 66.58,
+          "gross": 227.74,
+          "days": 20,
+          "buy_days": 11,
+          "sell_days": 9,
+          "max_buy": 41.69,
+          "max_buy_date": "2026-08-03",
+          "max_sell": -16.84,
+          "max_sell_date": "2026-08-07",
+          "consistency": 55.0,
+          "conversion": 29.0,
+          "concentration": 18.0
+        },
+        {
+          "code": "00700.HK",
+          "name": "腾讯控股",
+          "net": 58.71,
+          "gross": 210.93,
+          "days": 20,
+          "buy_days": 11,
+          "sell_days": 9,
+          "max_buy": 56.16,
+          "max_buy_date": "2026-08-13",
+          "max_sell": -22.0,
+          "max_sell_date": "2026-08-06",
+          "consistency": 55.0,
+          "conversion": 28.0,
+          "concentration": 27.0
+        },
+        {
+          "code": "02800.HK",
+          "name": "盈富基金",
+          "net": 55.41,
+          "gross": 187.01,
+          "days": 6,
+          "buy_days": 3,
+          "sell_days": 3,
+          "max_buy": 47.5,
+          "max_buy_date": "2026-08-03",
+          "max_sell": -27.59,
+          "max_sell_date": "2026-08-20",
+          "consistency": 50.0,
+          "conversion": 30.0,
+          "concentration": 25.0
+        },
+        {
+          "code": "06869.HK",
+          "name": "长飞光纤光缆",
+          "net": 34.12,
+          "gross": 69.06,
+          "days": 20,
+          "buy_days": 13,
+          "sell_days": 7,
+          "max_buy": 10.34,
+          "max_buy_date": "2026-08-26",
+          "max_sell": -5.26,
+          "max_sell_date": "2026-08-25",
+          "consistency": 65.0,
+          "conversion": 49.0,
+          "concentration": 15.0
+        },
+        {
+          "code": "00981.HK",
+          "name": "中芯国际",
+          "net": 26.69,
+          "gross": 145.09,
+          "days": 21,
+          "buy_days": 12,
+          "sell_days": 9,
+          "max_buy": 17.74,
+          "max_buy_date": "2026-08-17",
+          "max_sell": -18.95,
+          "max_sell_date": "2026-08-24",
+          "consistency": 57.0,
+          "conversion": 18.0,
+          "concentration": 13.0
+        },
+        {
+          "code": "02513.HK",
+          "name": "智谱",
+          "net": 23.77,
+          "gross": 99.39,
+          "days": 21,
+          "buy_days": 11,
+          "sell_days": 10,
+          "max_buy": 16.72,
+          "max_buy_date": "2026-08-17",
+          "max_sell": -10.38,
+          "max_sell_date": "2026-08-13",
+          "consistency": 52.0,
+          "conversion": 24.0,
+          "concentration": 17.0
+        },
+        {
+          "code": "01888.HK",
+          "name": "建滔积层板",
+          "net": 16.44,
+          "gross": 100.96,
+          "days": 20,
+          "buy_days": 12,
+          "sell_days": 8,
+          "max_buy": 8.88,
+          "max_buy_date": "2026-08-18",
+          "max_sell": -11.95,
+          "max_sell_date": "2026-08-25",
+          "consistency": 60.0,
+          "conversion": 16.0,
+          "concentration": 12.0
+        },
+        {
+          "code": "02269.HK",
+          "name": "药明生物",
+          "net": 15.16,
+          "gross": 26.16,
+          "days": 10,
+          "buy_days": 6,
+          "sell_days": 4,
+          "max_buy": 7.78,
+          "max_buy_date": "2026-08-07",
+          "max_sell": -2.81,
+          "max_sell_date": "2026-08-31",
+          "consistency": 60.0,
+          "conversion": 58.0,
+          "concentration": 30.0
+        },
+        {
+          "code": "01024.HK",
+          "name": "快手-W",
+          "net": 11.44,
+          "gross": 11.44,
+          "days": 1,
+          "buy_days": 1,
+          "sell_days": 0,
+          "max_buy": 11.44,
+          "max_buy_date": "2026-08-20",
+          "max_sell": 0.0,
+          "max_sell_date": "",
+          "consistency": 100.0,
+          "conversion": 100.0,
+          "concentration": 100.0
+        },
+        {
+          "code": "03033.HK",
+          "name": "南方恒生科技",
+          "net": 7.14,
+          "gross": 21.98,
+          "days": 3,
+          "buy_days": 2,
+          "sell_days": 1,
+          "max_buy": 11.39,
+          "max_buy_date": "2026-08-24",
+          "max_sell": -7.42,
+          "max_sell_date": "2026-08-25",
+          "consistency": 67.0,
+          "conversion": 32.0,
+          "concentration": 52.0
+        },
+        {
+          "code": "01548.HK",
+          "name": "金斯瑞生物科技",
+          "net": 6.97,
+          "gross": 6.97,
+          "days": 3,
+          "buy_days": 3,
+          "sell_days": 0,
+          "max_buy": 4.72,
+          "max_buy_date": "2026-08-10",
+          "max_sell": 0.0,
+          "max_sell_date": "",
+          "consistency": 100.0,
+          "conversion": 100.0,
+          "concentration": 68.0
+        },
+        {
+          "code": "03986.HK",
+          "name": "兆易创新",
+          "net": 6.3,
+          "gross": 30.5,
+          "days": 16,
+          "buy_days": 9,
+          "sell_days": 7,
+          "max_buy": 5.7,
+          "max_buy_date": "2026-08-18",
+          "max_sell": -2.98,
+          "max_sell_date": "2026-08-17",
+          "consistency": 56.0,
+          "conversion": 21.0,
+          "concentration": 19.0
+        },
+        {
+          "code": "02318.HK",
+          "name": "中国平安",
+          "net": 5.97,
+          "gross": 5.97,
+          "days": 1,
+          "buy_days": 1,
+          "sell_days": 0,
+          "max_buy": 5.97,
+          "max_buy_date": "2026-08-24",
+          "max_sell": 0.0,
+          "max_sell_date": "",
+          "consistency": 100.0,
+          "conversion": 100.0,
+          "concentration": 100.0
+        },
+        {
+          "code": "06030.HK",
+          "name": "中信证券",
+          "net": 5.56,
+          "gross": 5.56,
+          "days": 1,
+          "buy_days": 1,
+          "sell_days": 0,
+          "max_buy": 5.56,
+          "max_buy_date": "2026-08-11",
+          "max_sell": 0.0,
+          "max_sell_date": "",
+          "consistency": 100.0,
+          "conversion": 100.0,
+          "concentration": 100.0
+        }
+      ],
+      "top_sell": [
+        {
+          "code": "01347.HK",
+          "name": "华虹宏力",
+          "net": -31.17,
+          "gross": 102.43,
+          "days": 17,
+          "buy_days": 7,
+          "sell_days": 10,
+          "max_buy": 11.83,
+          "max_buy_date": "2026-08-04",
+          "max_sell": -29.69,
+          "max_sell_date": "2026-08-19",
+          "consistency": 59.0,
+          "conversion": 30.0,
+          "concentration": 29.0
+        },
+        {
+          "code": "00992.HK",
+          "name": "联想集团",
+          "net": -15.5,
+          "gross": 15.5,
+          "days": 2,
+          "buy_days": 0,
+          "sell_days": 2,
+          "max_buy": 0.0,
+          "max_buy_date": "",
+          "max_sell": -10.72,
+          "max_sell_date": "2026-08-14",
+          "consistency": 100.0,
+          "conversion": 100.0,
+          "concentration": 69.0
+        },
+        {
+          "code": "03690.HK",
+          "name": "美团-W",
+          "net": -13.82,
+          "gross": 44.9,
+          "days": 8,
+          "buy_days": 3,
+          "sell_days": 5,
+          "max_buy": 8.67,
+          "max_buy_date": "2026-08-25",
+          "max_sell": -12.27,
+          "max_sell_date": "2026-08-04",
+          "consistency": 62.0,
+          "conversion": 31.0,
+          "concentration": 27.0
+        },
+        {
+          "code": "01093.HK",
+          "name": "石药集团",
+          "net": -10.92,
+          "gross": 10.92,
+          "days": 1,
+          "buy_days": 0,
+          "sell_days": 1,
+          "max_buy": 0.0,
+          "max_buy_date": "",
+          "max_sell": -10.92,
+          "max_sell_date": "2026-08-20",
+          "consistency": 100.0,
+          "conversion": 100.0,
+          "concentration": 100.0
+        },
+        {
+          "code": "00939.HK",
+          "name": "建设银行",
+          "net": -10.3,
+          "gross": 10.3,
+          "days": 1,
+          "buy_days": 0,
+          "sell_days": 1,
+          "max_buy": 0.0,
+          "max_buy_date": "",
+          "max_sell": -10.3,
+          "max_sell_date": "2026-08-31",
+          "consistency": 100.0,
+          "conversion": 100.0,
+          "concentration": 100.0
+        },
+        {
+          "code": "02628.HK",
+          "name": "中国人寿",
+          "net": -8.78,
+          "gross": 8.78,
+          "days": 1,
+          "buy_days": 0,
+          "sell_days": 1,
+          "max_buy": 0.0,
+          "max_buy_date": "",
+          "max_sell": -8.78,
+          "max_sell_date": "2026-08-28",
+          "consistency": 100.0,
+          "conversion": 100.0,
+          "concentration": 100.0
+        },
+        {
+          "code": "00883.HK",
+          "name": "中国海洋石油",
+          "net": -7.05,
+          "gross": 8.23,
+          "days": 3,
+          "buy_days": 1,
+          "sell_days": 2,
+          "max_buy": 0.59,
+          "max_buy_date": "2026-08-11",
+          "max_sell": -6.17,
+          "max_sell_date": "2026-08-05",
+          "consistency": 67.0,
+          "conversion": 86.0,
+          "concentration": 75.0
+        },
+        {
+          "code": "09992.HK",
+          "name": "泡泡玛特",
+          "net": -6.0,
+          "gross": 6.36,
+          "days": 3,
+          "buy_days": 1,
+          "sell_days": 2,
+          "max_buy": 0.18,
+          "max_buy_date": "2026-08-21",
+          "max_sell": -4.26,
+          "max_sell_date": "2026-08-24",
+          "consistency": 67.0,
+          "conversion": 94.0,
+          "concentration": 67.0
+        },
+        {
+          "code": "01398.HK",
+          "name": "工商银行",
+          "net": -5.79,
+          "gross": 5.79,
+          "days": 1,
+          "buy_days": 0,
+          "sell_days": 1,
+          "max_buy": 0.0,
+          "max_buy_date": "",
+          "max_sell": -5.79,
+          "max_sell_date": "2026-08-31",
+          "consistency": 100.0,
+          "conversion": 100.0,
+          "concentration": 100.0
+        },
+        {
+          "code": "09926.HK",
+          "name": "康方生物",
+          "net": -5.39,
+          "gross": 7.23,
+          "days": 2,
+          "buy_days": 1,
+          "sell_days": 1,
+          "max_buy": 0.92,
+          "max_buy_date": "2026-08-28",
+          "max_sell": -6.31,
+          "max_sell_date": "2026-08-20",
+          "consistency": 50.0,
+          "conversion": 75.0,
+          "concentration": 87.0
+        },
+        {
+          "code": "01801.HK",
+          "name": "信达生物",
+          "net": -5.21,
+          "gross": 5.21,
+          "days": 1,
+          "buy_days": 0,
+          "sell_days": 1,
+          "max_buy": 0.0,
+          "max_buy_date": "",
+          "max_sell": -5.21,
+          "max_sell_date": "2026-08-26",
+          "consistency": 100.0,
+          "conversion": 100.0,
+          "concentration": 100.0
+        },
+        {
+          "code": "01952.HK",
+          "name": "云顶新耀",
+          "net": -3.18,
+          "gross": 3.18,
+          "days": 1,
+          "buy_days": 0,
+          "sell_days": 1,
+          "max_buy": 0.0,
+          "max_buy_date": "",
+          "max_sell": -3.18,
+          "max_sell_date": "2026-08-20",
+          "consistency": 100.0,
+          "conversion": 100.0,
+          "concentration": 100.0
+        },
+        {
+          "code": "00762.HK",
+          "name": "中国联通",
+          "net": -2.68,
+          "gross": 2.68,
+          "days": 1,
+          "buy_days": 0,
+          "sell_days": 1,
+          "max_buy": 0.0,
+          "max_buy_date": "",
+          "max_sell": -2.68,
+          "max_sell_date": "2026-08-19",
+          "consistency": 100.0,
+          "conversion": 100.0,
+          "concentration": 100.0
+        },
+        {
+          "code": "03330.HK",
+          "name": "灵宝黄金",
+          "net": -1.88,
+          "gross": 1.88,
+          "days": 1,
+          "buy_days": 0,
+          "sell_days": 1,
+          "max_buy": 0.0,
+          "max_buy_date": "",
+          "max_sell": -1.88,
+          "max_sell_date": "2026-08-11",
+          "consistency": 100.0,
+          "conversion": 100.0,
+          "concentration": 100.0
+        },
+        {
+          "code": "01810.HK",
+          "name": "小米集团-W",
+          "net": -1.58,
+          "gross": 52.56,
+          "days": 12,
+          "buy_days": 7,
+          "sell_days": 5,
+          "max_buy": 4.92,
+          "max_buy_date": "2026-08-27",
+          "max_sell": -15.1,
+          "max_sell_date": "2026-08-19",
+          "consistency": 58.0,
+          "conversion": 3.0,
+          "concentration": 29.0
+        }
+      ]
+    }
+  }
 }

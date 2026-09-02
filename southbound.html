@@ -63,6 +63,7 @@
 
   .red { color: #C0392B; }
   .green { color: #2D7D3A; }
+  .blue { color: #4A6CF7; }
 
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   th { text-align: left; padding: 8px 10px; font-weight: 500; color: var(--text-secondary); font-size: 12px; border-bottom: 1px solid var(--border); }
@@ -150,6 +151,7 @@
 <nav class="nav">
   <span class="brand">南向资金看板</span>
   <a class="active" id="tabDashboard" onclick="switchTab('dashboard')">实时看板</a>
+  <a id="tabMonthly" onclick="switchTab('monthly')">月度个股</a>
   <a id="tabHistory" onclick="switchTab('history')">历史报告</a>
 </nav>
 
@@ -212,6 +214,33 @@
   </div>
 </div>
 
+</div>
+
+<!-- ==================== Monthly Stock Tab ==================== -->
+<div class="tab-content" id="monthlySection">
+  <div class="header" style="background:linear-gradient(135deg,#2c3e50,#4a6cf7);">
+    <h1>南向资金 · 个股月度汇总</h1>
+    <p id="monthlySubtitle">加载中...</p>
+  </div>
+
+  <div class="metric-grid" id="monthlyMetrics"></div>
+
+  <div class="card" style="border-left:3px solid #E8A33D;">
+    <h2 style="margin-bottom:8px;">⚠️ 数据口径（先读这个再看排名）</h2>
+    <div style="font-size:12.5px;line-height:1.85;color:var(--text-secondary);">
+      本表仅统计<strong>当日进入「港股通十大成交个股」榜</strong>的标的，已合并港股通(沪)+港股通(深)两个通道。
+      成交额排不进前十的个股即使有净买入也不会被记录，因此<strong>这是「活跃标的的月度净额」，不等于该股全月南向净买入总额</strong>。
+      <div style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--border);">
+        <strong>三个指标怎么读</strong>（这三个比排名本身更重要）：<br>
+        · <strong>上榜天数</strong> — 本月进入十大成交榜的天数，反映资金关注度。上榜 1 天的 +10 亿与上榜 15 天累计 +10 亿，含义完全不同。<br>
+        · <strong>转化率</strong> = |月度净额| ÷ 全月成交绝对额。<strong>低 = 买卖反复互相抵消</strong>（高频换手），高 = 单边推进。<br>
+        · <strong>集中度</strong> = 最大单日额 ÷ 全月成交绝对额。<strong>高 = 单日事件驱动</strong>，不是持续建仓。
+      </div>
+    </div>
+  </div>
+
+  <div id="monthlyInsights"></div>
+  <div id="monthlyTables"></div>
 </div>
 
 <!-- ==================== History Tab ==================== -->
@@ -519,15 +548,156 @@ function renderSectorChart() {
 // ============================================================
 function switchTab(tab) {
   document.getElementById('dashboardSection').classList.toggle('active', tab === 'dashboard');
+  document.getElementById('monthlySection').classList.toggle('active', tab === 'monthly');
   document.getElementById('historySection').classList.toggle('active', tab === 'history');
   document.getElementById('tabDashboard').classList.toggle('active', tab === 'dashboard');
+  document.getElementById('tabMonthly').classList.toggle('active', tab === 'monthly');
   document.getElementById('tabHistory').classList.toggle('active', tab === 'history');
+
+  if (tab === 'monthly') renderMonthly();
 
   // Trigger chart resize on tab switch
   setTimeout(() => {
     if (gDailyChart) gDailyChart.resize();
     if (gSectorChart) gSectorChart.resize();
   }, 100);
+}
+
+// ============================================================
+// Monthly Stock Flow Tab
+// ============================================================
+let gMonthlyRendered = false;
+
+function mFmt(v) { return (v >= 0 ? '+' : '') + v.toFixed(2); }
+
+function renderMonthly() {
+  if (gMonthlyRendered) return;
+  if (!gData || !gData.monthly_stock_flow) {
+    document.getElementById('monthlyTables').innerHTML =
+      '<div class="card" style="text-align:center;color:var(--text-tertiary);padding:40px;">暂无月度个股汇总数据</div>';
+    return;
+  }
+
+  const months = Object.keys(gData.monthly_stock_flow).sort().reverse();
+  if (!months.length) return;
+  const m = gData.monthly_stock_flow[months[0]];
+
+  // ---- Subtitle ----
+  document.getElementById('monthlySubtitle').textContent =
+    m.month + ' · 交易日 ' + m.trade_days + ' 天（个股数据覆盖 ' +
+    m.days_with_stock_data + ' 天）· 上榜个股 ' + m.stock_count + ' 只 · 数据来源：东方财富数据中心';
+
+  // ---- Metric cards ----
+  const netCls = m.month_total_net >= 0 ? 'red' : 'green';
+  const buyTop = m.top_buy[0], sellTop = m.top_sell[0];
+  // 单边趋势标的：上榜≥8天、转化率≥50%、集中度≤60%
+  const trend = m.top_buy.concat(m.top_sell).filter(r =>
+    r.days >= 8 && r.conversion >= 50 && r.concentration <= 60 && Math.abs(r.net) >= 5);
+
+  document.getElementById('monthlyMetrics').innerHTML =
+    '<div class="metric-card"><div class="label">当月南向合计</div>' +
+      '<div class="value ' + netCls + '">' + mFmt(m.month_total_net) + ' 亿港元</div>' +
+      '<div class="sub">' + m.trade_days + ' 个交易日 · 个股覆盖 ' + m.days_with_stock_data + ' 天</div></div>' +
+    '<div class="metric-card"><div class="label">月度净买入第一</div>' +
+      '<div class="value red" style="font-size:19px;">' + buyTop.name + '</div>' +
+      '<div class="sub">' + mFmt(buyTop.net) + ' 亿 · 上榜 ' + buyTop.days + ' 天</div></div>' +
+    '<div class="metric-card"><div class="label">月度净卖出第一</div>' +
+      '<div class="value green" style="font-size:19px;">' + sellTop.name + '</div>' +
+      '<div class="sub">' + mFmt(sellTop.net) + ' 亿 · 上榜 ' + sellTop.days + ' 天</div></div>' +
+    '<div class="metric-card"><div class="label">单边趋势标的</div>' +
+      '<div class="value blue">' + trend.length + ' 只</div>' +
+      '<div class="sub">上榜≥8天 · 转化率≥50% · 非单日驱动</div></div>';
+
+  // ---- Insights ----
+  const byDays = m.top_buy.concat(m.top_sell).slice().sort((a,b) => b.days - a.days).slice(0,5);
+  const eventDriven = m.top_buy.concat(m.top_sell)
+    .filter(r => Math.abs(r.net) >= 3 && r.concentration > 60)
+    .sort((a,b) => Math.abs(b.net) - Math.abs(a.net));
+  const churn = m.top_buy.concat(m.top_sell)
+    .filter(r => r.buy_days >= 3 && r.sell_days >= 3 && r.conversion < 40)
+    .sort((a,b) => a.conversion - b.conversion);
+
+  let ins = '<div class="card"><h2>📌 关键观察（比排名更重要）</h2>';
+
+  ins += '<div style="margin-bottom:14px;"><div style="font-weight:600;font-size:13px;color:var(--text-primary);margin-bottom:6px;">⭐ 真正的单边趋势（上榜≥8天 · 转化率≥50% · 非单日驱动）</div>';
+  if (trend.length) {
+    ins += '<table><tr><th>标的</th><th>月度净额</th><th>上榜</th><th>买/卖</th><th>转化率</th><th>判定</th></tr>';
+    trend.sort((a,b) => Math.abs(b.net) - Math.abs(a.net)).forEach(r => {
+      const cls = r.net >= 0 ? 'red' : 'green';
+      ins += '<tr><td><strong>' + r.name + '</strong><br><span style="font-size:10px;color:var(--text-tertiary);">' + r.code + '</span></td>' +
+        '<td class="' + cls + '">' + mFmt(r.net) + '亿</td><td>' + r.days + '天</td>' +
+        '<td>' + r.buy_days + '/' + r.sell_days + '</td><td>' + r.conversion + '%</td>' +
+        '<td>' + (r.net >= 0 ? '持续建仓' : '持续撤离') + '</td></tr>';
+    });
+    ins += '</table><div class="note">这些才是资金意图明确的标的——多日上榜、方向单边、不靠单日大额撑起来。</div>';
+  } else {
+    ins += '<div class="note">本月无标的呈现清晰的单边趋势。</div>';
+  }
+  ins += '</div>';
+
+  ins += '<div style="margin-bottom:14px;"><div style="font-weight:600;font-size:13px;color:var(--text-primary);margin-bottom:6px;">⚠️ 单日事件驱动（集中度&gt;60%，勿当持续建仓）</div>';
+  if (eventDriven.length) {
+    ins += '<table><tr><th>标的</th><th>月度净额</th><th>最大单日</th><th>集中度</th><th>上榜</th></tr>';
+    eventDriven.slice(0,10).forEach(r => {
+      const cls = r.net >= 0 ? 'red' : 'green';
+      const peak = r.net >= 0 ? r.max_buy : r.max_sell;
+      const pdate = (r.net >= 0 ? r.max_buy_date : r.max_sell_date).substring(5);
+      ins += '<tr><td>' + r.name + '</td><td class="' + cls + '">' + mFmt(r.net) + '亿</td>' +
+        '<td class="' + cls + '">' + mFmt(peak) + '亿 <span style="color:var(--text-tertiary);font-size:10px;">' + pdate + '</span></td>' +
+        '<td>' + r.concentration + '%</td><td>' + r.days + '天</td></tr>';
+    });
+    ins += '</table><div class="note">月度净额几乎全由某一天贡献，属事件驱动（指数调整、大宗、财报等），不代表资金在持续进出。</div>';
+  } else {
+    ins += '<div class="note">无</div>';
+  }
+  ins += '</div>';
+
+  ins += '<div><div style="font-weight:600;font-size:13px;color:var(--text-primary);margin-bottom:6px;">🔀 反复换手（双向均≥3天且转化率&lt;40%，资金分歧大）</div>';
+  if (churn.length) {
+    ins += '<table><tr><th>标的</th><th>全月成交</th><th>月度净额</th><th>转化率</th><th>买/卖日</th></tr>';
+    churn.slice(0,10).forEach(r => {
+      const cls = r.net >= 0 ? 'red' : 'green';
+      ins += '<tr><td>' + r.name + '</td><td>' + r.gross.toFixed(0) + '亿</td>' +
+        '<td class="' + cls + '">' + mFmt(r.net) + '亿</td><td><strong>' + r.conversion + '%</strong></td>' +
+        '<td>' + r.buy_days + '/' + r.sell_days + '</td></tr>';
+    });
+    ins += '</table><div class="note">成交额很大但净额很小——南向在这些标的上高频进出，是交易而非配置。看到大额净买入时要先看这一栏。</div>';
+  } else {
+    ins += '<div class="note">无</div>';
+  }
+  ins += '</div></div>';
+
+  document.getElementById('monthlyInsights').innerHTML = ins;
+
+  // ---- Full ranking tables ----
+  function rankTable(title, rows, isBuy) {
+    let h = '<div class="card"><h2>' + title + '</h2>' +
+      '<table><tr><th>#</th><th>标的</th><th>月度净额</th><th>上榜</th><th>买/卖</th>' +
+      '<th>转化率</th><th>集中度</th><th>最大单日</th></tr>';
+    rows.forEach((r, i) => {
+      const cls = isBuy ? 'red' : 'green';
+      const peak = isBuy ? r.max_buy : r.max_sell;
+      const pdate = (isBuy ? r.max_buy_date : r.max_sell_date).substring(5);
+      // 高亮：单边趋势加⭐，单日驱动加⚠️
+      let tag = '';
+      if (r.days >= 8 && r.conversion >= 50 && r.concentration <= 60) tag = ' ⭐';
+      else if (r.concentration > 60) tag = ' ⚠️';
+      h += '<tr><td>' + (i+1) + '</td>' +
+        '<td><strong>' + r.name + '</strong>' + tag + '<br><span style="font-size:10px;color:var(--text-tertiary);">' + r.code + '</span></td>' +
+        '<td class="' + cls + '"><strong>' + mFmt(r.net) + '</strong></td>' +
+        '<td>' + r.days + '天</td><td>' + r.buy_days + '/' + r.sell_days + '</td>' +
+        '<td>' + r.conversion + '%</td><td>' + r.concentration + '%</td>' +
+        '<td class="' + cls + '">' + mFmt(peak) + ' <span style="color:var(--text-tertiary);font-size:10px;">' + pdate + '</span></td></tr>';
+    });
+    h += '</table><div class="note">⭐ 单边趋势（可信度高）　⚠️ 单日事件驱动（勿当持续建仓）　金额单位：亿港元</div></div>';
+    return h;
+  }
+
+  document.getElementById('monthlyTables').innerHTML =
+    rankTable('🏆 ' + m.month + ' 月度净买入 TOP' + m.top_buy.length, m.top_buy, true) +
+    rankTable('📉 ' + m.month + ' 月度净卖出 TOP' + m.top_sell.length, m.top_sell, false);
+
+  gMonthlyRendered = true;
 }
 
 // ============================================================

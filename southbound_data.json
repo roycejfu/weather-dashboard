@@ -3772,8 +3772,8 @@
       44.31
     ]
   },
-  "cumulative_total": 31851.42,
-  "generated_at": "2026-09-14 15:47:22",
+  "cumulative_total": 55022.55,
+  "generated_at": "2026-09-14 16:01:43",
   "monthly_reports": [
     {
       "month": "2026-01",
@@ -4963,5 +4963,10 @@
     "yoy_delta": -6659.32,
     "yoy_ratio_pct": 37.5,
     "source": "东方财富 datacenter RPT_MUTUAL_DEAL_HISTORY (MUTUAL_TYPE=006)"
+  },
+  "cumulative": {
+    "as_of": "2026-09-11",
+    "total_net": 55022.55,
+    "hold_market_cap_trillion_hkd": 12.0
   }
 }

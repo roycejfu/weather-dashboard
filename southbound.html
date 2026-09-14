@@ -334,12 +334,27 @@ function renderDashboard(date) {
       '<div class="value ' + totalClass + '">' + (r.total_net >= 0 ? '+' : '') + r.total_net.toFixed(2) + ' 亿港元</div>' +
       '<div class="sub">沪 ' + shVal + '亿 / 深 ' + szVal + '亿 | ' + date + '</div>' +
     '</div>' +
-    '<div class="metric-card">' +
-      '<div class="label">历史累计净买入</div>' +
-      '<div class="value red">3.18 万亿港元</div>' +
-      '<div class="sub">港股通开通以来累计 | 东方财富</div>' +
-    '</div>' +
+    cumCard() +
     ytdCards();
+
+  // ---- 历史累计卡：读 cumulative 字段，不再写死「3.18 万亿」（那是 2024 年中的旧水位）----
+  function cumCard() {
+    const c = (gData && gData.cumulative) || null;
+    if (!c || !c.total_net) {
+      return '<div class="metric-card">' +
+        '<div class="label">历史累计净买入</div>' +
+        '<div class="value">--</div>' +
+        '<div class="sub">cumulative 字段缺失，请运行 fix_southbound_history.py</div>' +
+      '</div>';
+    }
+    return '<div class="metric-card">' +
+      '<div class="label">历史累计净买入</div>' +
+      '<div class="value red">' + (c.total_net / 10000).toFixed(2) + ' 万亿港元</div>' +
+      '<div class="sub">港股通开通以来累计净买入 +' +
+        Math.round(c.total_net).toLocaleString('en-US') + ' 亿 · 截至' + c.as_of +
+        ' · 持股市值 ' + (c.hold_market_cap_trillion_hkd || 0).toFixed(2) + ' 万亿</div>' +
+    '</div>';
+  }
 
   // ---- YTD 两张卡：全部由 southbound_data.json 的 ytd 字段驱动，不再硬编码 ----
   function ytdCards() {

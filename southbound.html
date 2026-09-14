@@ -339,16 +339,37 @@ function renderDashboard(date) {
       '<div class="value red">3.18 万亿港元</div>' +
       '<div class="sub">港股通开通以来累计 | 东方财富</div>' +
     '</div>' +
-    '<div class="metric-card">' +
-      '<div class="label">年初至今累计净流入</div>' +
-      '<div class="value red">≈ 3,690 亿港元</div>' +
-      '<div class="sub">截至' + date + ' 约143个交易日估算</div>' +
-    '</div>' +
-    '<div class="metric-card">' +
-      '<div class="label">日均净流入</div>' +
-      '<div class="value red">≈ 25.8 亿港元</div>' +
-      '<div class="sub">2026年YTD日均</div>' +
-    '</div>';
+    ytdCards();
+
+  // ---- YTD 两张卡：全部由 southbound_data.json 的 ytd 字段驱动，不再硬编码 ----
+  function ytdCards() {
+    const y = gData && gData.ytd;
+    if (!y || !y.current) {
+      return '<div class="metric-card">' +
+        '<div class="label">年初至今累计净流入</div>' +
+        '<div class="value">--</div>' +
+        '<div class="sub">数据未生成，请运行 fix_southbound_history.py</div>' +
+      '</div>';
+    }
+    const c = y.current, p = y.last_year_same_period || {};
+    const cCls = c.total_net >= 0 ? 'red' : 'green';
+    const dCls = y.yoy_delta >= 0 ? 'red' : 'green';
+    const fmt = v => (v >= 0 ? '+' : '') + Number(v).toLocaleString('en-US', {maximumFractionDigits: 0});
+
+    return '<div class="metric-card">' +
+        '<div class="label">年初至今累计净流入</div>' +
+        '<div class="value ' + cCls + '">' + fmt(c.total_net) + ' 亿港元</div>' +
+        '<div class="sub">截至' + y.as_of + ' · ' + c.trade_days + ' 个交易日 · 净买入' +
+          c.buy_days + '天/净卖出' + c.sell_days + '天</div>' +
+      '</div>' +
+      '<div class="metric-card">' +
+        '<div class="label">同比（去年同期）</div>' +
+        '<div class="value ' + dCls + '">' + fmt(y.yoy_delta) + ' 亿</div>' +
+        '<div class="sub">' + (p.label || '去年同期') + ' ' + fmt(p.total_net || 0) +
+          ' 亿 → 今年仅为其 ' + y.yoy_ratio_pct + '%' +
+          ' | 日均 ' + fmt(p.avg_per_day || 0) + ' → ' + fmt(c.avg_per_day) + ' 亿</div>' +
+      '</div>';
+  }
 
   // ---- Stock tables ----
   const hasDetail = !!(r.top_buy || r.top_sell);

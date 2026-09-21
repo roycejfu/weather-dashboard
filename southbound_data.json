@@ -3890,6 +3890,98 @@
         }
       ],
       "commentary": "9月18日收盘：南向资金净买入+11.93亿港元（沪+0.17/深+11.76），恒指+0.60%报24,750.78上涨，总量为本周最低——延续「涨则兑现」的量能特征。**但真正的信号不在总量，而在结构：今日是本周最剧烈的一次仓位切换。**净买入端百度集团-W+42.61亿单日登顶，此前9/9曾有过+17.35亿的单日上榜后即消失，属事件驱动型资金、不宜按趋势解读；其后智谱+8.54亿（连续第九日，力度自31.22→18.29→8.54**三日连降**，边际动能明显衰竭）、长飞光纤光缆+5.64亿（再度反手转买）、中芯国际+5.28亿、华虹宏力+4.80亿、剑桥科技+2.97亿。净卖出端盈富基金-22.65亿创近期最大单日（宽基被大额减仓）、阿里巴巴-W-11.24亿（连续第四日且力度翻倍）、小米-5.52亿、美团-5.24亿。**方向非常清楚：卖宽基与互联网平台，买半导体与光通信。**跨市场：A股同日电子主力+198.54亿、半导体+182.20亿居全市场前二，科创50+2.88%、创业板+2.25%，与南向买中芯/华虹/长飞方向一致——今日南北在半导体与光通信上高度同向（仅限今日）。需同时点明分化：A股印制电路板主力-41.17亿、元件-38.06亿净流出，而两者10日累计仍有+124/+175亿——**这是AI硬件内部从PCB切向半导体的资金再分配，不是对AI硬件整体加仓**；沪电股份当日仅+0.02%、主力-6.92亿，与半导体标的涨幅拉开明显差距，可作为该切换的直接印证。"
+    },
+    {
+      "date": "2026-09-21",
+      "label": "09-21",
+      "sh_net": 31.18,
+      "sz_net": 9.56,
+      "total_net": 40.74,
+      "hsi_close": 25042.71,
+      "hsi_chg": 1.18,
+      "top_buy": [
+        {
+          "rank": 1,
+          "name": "长飞光纤光缆",
+          "code": "06869.HK",
+          "amount": 5.81
+        },
+        {
+          "rank": 2,
+          "name": "阿里巴巴-W",
+          "code": "09988.HK",
+          "amount": 5.53
+        },
+        {
+          "rank": 3,
+          "name": "智谱",
+          "code": "02513.HK",
+          "amount": 3.73
+        },
+        {
+          "rank": 4,
+          "name": "华虹宏力",
+          "code": "01347.HK",
+          "amount": 2.07
+        },
+        {
+          "rank": 5,
+          "name": "金斯瑞生物科技",
+          "code": "01548.HK",
+          "amount": 1.66
+        },
+        {
+          "rank": 6,
+          "name": "MINIMAX-W",
+          "code": "00100.HK",
+          "amount": 0.34
+        }
+      ],
+      "top_sell": [
+        {
+          "rank": 1,
+          "name": "腾讯控股",
+          "code": "00700.HK",
+          "amount": -8.15
+        },
+        {
+          "rank": 2,
+          "name": "小米集团-W",
+          "code": "01810.HK",
+          "amount": -6.73
+        },
+        {
+          "rank": 3,
+          "name": "中国黄金国际",
+          "code": "02099.HK",
+          "amount": -5.22
+        },
+        {
+          "rank": 4,
+          "name": "康方生物",
+          "code": "09926.HK",
+          "amount": -2.66
+        },
+        {
+          "rank": 5,
+          "name": "中芯国际",
+          "code": "00981.HK",
+          "amount": -2.16
+        },
+        {
+          "rank": 6,
+          "name": "建滔积层板",
+          "code": "01888.HK",
+          "amount": -0.92
+        },
+        {
+          "rank": 7,
+          "name": "胜宏科技",
+          "code": "02476.HK",
+          "amount": -0.75
+        }
+      ],
+      "commentary": "9月21日收盘：南向资金净买入+40.74亿港元（沪+31.18/深+9.56），恒指+1.18%报25,042.71。**这是「跌则承接、涨则兑现」模式的一个明确反例，必须记账。**此前12次验证中，恒指上涨日南向净额都偏小或转负（9/4唯一净卖出日恰是恒指+1.74%的大涨日），而今日恒指涨幅+1.18%并不小，南向反而买入40.74亿，为9/17（+33.63）以来最大单日。按「方向性规律至少要见到一次反例才能定性」的原则，该模式从此只能表述为「多数情况下成立」，不能再当作稳定属性使用。但必须同时看结构：**恒指+1.18%而恒生科技仅+0.40%**，说明今日港股由非科技板块驱动、科技板块跑输大市，与9/18（恒指+0.60%/恒科+2.20%）恰好镜像——南向买的未必是涨的那部分。净买入端长飞光纤光缆+5.81亿居首（9/18 +5.64后连续第二日，是9月月度单边建仓标的之一）；阿里巴巴-W+5.53亿**终结此前连续四日被卖**（9/18尚为-11.24亿）；智谱+3.73亿，力度自31.22→18.29→8.54→3.73**四日连降**，9月单边建仓的边际动能基本耗尽；华虹宏力+2.07亿、金斯瑞生物科技+1.66亿、MINIMAX-W+0.34亿。净卖出端腾讯控股-8.15亿居首（9/18尚为+0.07亿，单日反转）、小米集团-W-6.73亿（连续第二日）、中国黄金国际-5.22亿、康方生物-2.66亿、中芯国际-2.16亿（9/18 +5.28后再度转卖，方向又一次一天一反转）、建滔积层板-0.92亿、胜宏科技-0.75亿。跨市场：A股同日上证+0.97%、深成+0.65%、创业板+0.80%，而**科创50仅+0.29%为最弱**；A股半导体主力**-49.78亿转负**（9/18为+182.20）、印制电路板**+24.38亿转正**（9/18为-41.17）——与9/18完全反向的AI硬件内部切换。南向侧同步分化：卖中芯-2.16、买华虹+2.07，**半导体内部方向不一致，今日不能写成「南北同向」**。光通信是今日唯一明确南北同向的方向（南向买长飞+5.81，A股印制电路板与元件同步回流）。"
     }
   ],
   "daily_chart": {
@@ -4063,7 +4155,8 @@
       "09-15",
       "09-16",
       "09-17",
-      "09-18"
+      "09-18",
+      "09-21"
     ],
     "values": [
       187.23,
@@ -4235,11 +4328,12 @@
       8.81,
       20.99,
       33.63,
-      11.93
+      11.93,
+      40.74
     ]
   },
-  "cumulative_total": 55142.62,
-  "generated_at": "2026-09-20 12:19:38",
+  "cumulative_total": 55183.36,
+  "generated_at": "2026-09-21 17:48:42",
   "monthly_reports": [
     {
       "month": "2026-01",
@@ -5383,27 +5477,27 @@
     },
     "2026-09": {
       "month": "2026-09",
-      "trade_days": 14,
-      "days_with_stock_data": 14,
-      "month_total_net": 373.36,
-      "stock_count": 33,
+      "trade_days": 15,
+      "days_with_stock_data": 15,
+      "month_total_net": 414.1,
+      "stock_count": 34,
       "note": "仅统计当日进入十大成交个股榜的标的，未上榜日不计入；days=上榜天数",
       "top_buy": [
         {
           "code": "02513.HK",
           "name": "智谱",
-          "net": 70.88,
-          "gross": 116.02,
-          "days": 14,
-          "buy_days": 9,
+          "net": 74.61,
+          "gross": 119.75,
+          "days": 15,
+          "buy_days": 10,
           "sell_days": 5,
           "max_buy": 31.22,
           "max_buy_date": "2026-09-16",
           "max_sell": -9.67,
           "max_sell_date": "2026-09-10",
-          "consistency": 64.0,
-          "conversion": 61.0,
-          "concentration": 27.0
+          "consistency": 67.0,
+          "conversion": 62.0,
+          "concentration": 26.0
         },
         {
           "code": "09888.HK",
@@ -5424,18 +5518,18 @@
         {
           "code": "06869.HK",
           "name": "长飞光纤光缆",
-          "net": 23.64,
-          "gross": 46.16,
-          "days": 14,
-          "buy_days": 9,
+          "net": 29.45,
+          "gross": 51.97,
+          "days": 15,
+          "buy_days": 10,
           "sell_days": 5,
           "max_buy": 6.54,
           "max_buy_date": "2026-09-08",
           "max_sell": -3.9,
           "max_sell_date": "2026-09-16",
-          "consistency": 64.0,
-          "conversion": 51.0,
-          "concentration": 14.0
+          "consistency": 67.0,
+          "conversion": 57.0,
+          "concentration": 13.0
         },
         {
           "code": "03308.HK",
@@ -5452,22 +5546,6 @@
           "consistency": 86.0,
           "conversion": 98.0,
           "concentration": 30.0
-        },
-        {
-          "code": "01810.HK",
-          "name": "小米集团-W",
-          "net": 15.82,
-          "gross": 41.78,
-          "days": 9,
-          "buy_days": 7,
-          "sell_days": 2,
-          "max_buy": 13.84,
-          "max_buy_date": "2026-09-07",
-          "max_sell": -7.46,
-          "max_sell_date": "2026-09-04",
-          "consistency": 78.0,
-          "conversion": 38.0,
-          "concentration": 33.0
         },
         {
           "code": "03033.HK",
@@ -5488,17 +5566,17 @@
         {
           "code": "00100.HK",
           "name": "MINIMAX-W",
-          "net": 10.8,
-          "gross": 48.94,
-          "days": 14,
-          "buy_days": 6,
+          "net": 11.14,
+          "gross": 49.28,
+          "days": 15,
+          "buy_days": 7,
           "sell_days": 8,
           "max_buy": 9.48,
           "max_buy_date": "2026-09-04",
           "max_sell": -4.65,
           "max_sell_date": "2026-09-10",
-          "consistency": 57.0,
-          "conversion": 22.0,
+          "consistency": 53.0,
+          "conversion": 23.0,
           "concentration": 19.0
         },
         {
@@ -5518,20 +5596,20 @@
           "concentration": 100.0
         },
         {
-          "code": "00700.HK",
-          "name": "腾讯控股",
-          "net": 4.87,
-          "gross": 67.81,
-          "days": 14,
-          "buy_days": 11,
+          "code": "01810.HK",
+          "name": "小米集团-W",
+          "net": 9.09,
+          "gross": 48.51,
+          "days": 10,
+          "buy_days": 7,
           "sell_days": 3,
-          "max_buy": 11.25,
-          "max_buy_date": "2026-09-01",
-          "max_sell": -21.02,
+          "max_buy": 13.84,
+          "max_buy_date": "2026-09-07",
+          "max_sell": -7.46,
           "max_sell_date": "2026-09-04",
-          "consistency": 79.0,
-          "conversion": 7.0,
-          "concentration": 31.0
+          "consistency": 70.0,
+          "conversion": 19.0,
+          "concentration": 29.0
         },
         {
           "code": "00883.HK",
@@ -5566,22 +5644,6 @@
           "concentration": 24.0
         },
         {
-          "code": "01888.HK",
-          "name": "建滔积层板",
-          "net": 3.85,
-          "gross": 31.83,
-          "days": 14,
-          "buy_days": 7,
-          "sell_days": 7,
-          "max_buy": 3.98,
-          "max_buy_date": "2026-09-08",
-          "max_sell": -6.51,
-          "max_sell_date": "2026-09-07",
-          "consistency": 50.0,
-          "conversion": 12.0,
-          "concentration": 20.0
-        },
-        {
           "code": "02269.HK",
           "name": "药明生物",
           "net": 3.6,
@@ -5596,6 +5658,22 @@
           "consistency": 100.0,
           "conversion": 100.0,
           "concentration": 96.0
+        },
+        {
+          "code": "01888.HK",
+          "name": "建滔积层板",
+          "net": 2.93,
+          "gross": 32.75,
+          "days": 15,
+          "buy_days": 7,
+          "sell_days": 8,
+          "max_buy": 3.98,
+          "max_buy_date": "2026-09-08",
+          "max_sell": -6.51,
+          "max_sell_date": "2026-09-07",
+          "consistency": 53.0,
+          "conversion": 9.0,
+          "concentration": 20.0
         },
         {
           "code": "00992.HK",
@@ -5628,24 +5706,40 @@
           "consistency": 50.0,
           "conversion": 16.0,
           "concentration": 58.0
+        },
+        {
+          "code": "02685.HK",
+          "name": "量化派",
+          "net": 0.08,
+          "gross": 0.08,
+          "days": 1,
+          "buy_days": 1,
+          "sell_days": 0,
+          "max_buy": 0.08,
+          "max_buy_date": "2026-09-11",
+          "max_sell": 0.0,
+          "max_sell_date": "",
+          "consistency": 100.0,
+          "conversion": 100.0,
+          "concentration": 100.0
         }
       ],
       "top_sell": [
         {
           "code": "00981.HK",
           "name": "中芯国际",
-          "net": -32.05,
-          "gross": 54.61,
-          "days": 14,
+          "net": -34.21,
+          "gross": 56.77,
+          "days": 15,
           "buy_days": 2,
-          "sell_days": 12,
+          "sell_days": 13,
           "max_buy": 6.0,
           "max_buy_date": "2026-09-16",
           "max_sell": -9.04,
           "max_sell_date": "2026-09-04",
-          "consistency": 86.0,
-          "conversion": 59.0,
-          "concentration": 17.0
+          "consistency": 87.0,
+          "conversion": 60.0,
+          "concentration": 16.0
         },
         {
           "code": "02800.HK",
@@ -5666,34 +5760,34 @@
         {
           "code": "01347.HK",
           "name": "华虹宏力",
-          "net": -20.28,
-          "gross": 29.88,
-          "days": 7,
-          "buy_days": 1,
+          "net": -18.21,
+          "gross": 31.95,
+          "days": 8,
+          "buy_days": 2,
           "sell_days": 6,
           "max_buy": 4.8,
           "max_buy_date": "2026-09-18",
           "max_sell": -7.53,
           "max_sell_date": "2026-09-04",
-          "consistency": 86.0,
-          "conversion": 68.0,
-          "concentration": 25.0
+          "consistency": 75.0,
+          "conversion": 57.0,
+          "concentration": 24.0
         },
         {
           "code": "09988.HK",
           "name": "阿里巴巴-W",
-          "net": -19.08,
-          "gross": 61.0,
-          "days": 13,
-          "buy_days": 6,
+          "net": -13.55,
+          "gross": 66.53,
+          "days": 14,
+          "buy_days": 7,
           "sell_days": 7,
           "max_buy": 6.27,
           "max_buy_date": "2026-09-08",
           "max_sell": -11.24,
           "max_sell_date": "2026-09-18",
-          "consistency": 54.0,
-          "conversion": 31.0,
-          "concentration": 18.0
+          "consistency": 50.0,
+          "conversion": 20.0,
+          "concentration": 17.0
         },
         {
           "code": "01801.HK",
@@ -5712,20 +5806,20 @@
           "concentration": 61.0
         },
         {
-          "code": "01548.HK",
-          "name": "金斯瑞生物科技",
-          "net": -11.55,
-          "gross": 11.55,
+          "code": "02099.HK",
+          "name": "中国黄金国际",
+          "net": -10.99,
+          "gross": 10.99,
           "days": 3,
           "buy_days": 0,
           "sell_days": 3,
           "max_buy": 0.0,
           "max_buy_date": "",
-          "max_sell": -8.24,
-          "max_sell_date": "2026-09-04",
+          "max_sell": -5.22,
+          "max_sell_date": "2026-09-21",
           "consistency": 100.0,
           "conversion": 100.0,
-          "concentration": 71.0
+          "concentration": 47.0
         },
         {
           "code": "03690.HK",
@@ -5746,34 +5840,34 @@
         {
           "code": "09926.HK",
           "name": "康方生物",
-          "net": -7.27,
-          "gross": 9.37,
-          "days": 2,
+          "net": -9.93,
+          "gross": 12.03,
+          "days": 3,
           "buy_days": 1,
-          "sell_days": 1,
+          "sell_days": 2,
           "max_buy": 1.05,
           "max_buy_date": "2026-09-14",
           "max_sell": -8.32,
           "max_sell_date": "2026-09-04",
-          "consistency": 50.0,
-          "conversion": 78.0,
-          "concentration": 89.0
+          "consistency": 67.0,
+          "conversion": 83.0,
+          "concentration": 69.0
         },
         {
-          "code": "02099.HK",
-          "name": "中国黄金国际",
-          "net": -5.77,
-          "gross": 5.77,
-          "days": 2,
-          "buy_days": 0,
-          "sell_days": 2,
-          "max_buy": 0.0,
-          "max_buy_date": "",
-          "max_sell": -3.22,
-          "max_sell_date": "2026-09-15",
-          "consistency": 100.0,
-          "conversion": 100.0,
-          "concentration": 56.0
+          "code": "01548.HK",
+          "name": "金斯瑞生物科技",
+          "net": -9.89,
+          "gross": 13.21,
+          "days": 4,
+          "buy_days": 1,
+          "sell_days": 3,
+          "max_buy": 1.66,
+          "max_buy_date": "2026-09-21",
+          "max_sell": -8.24,
+          "max_sell_date": "2026-09-04",
+          "consistency": 75.0,
+          "conversion": 75.0,
+          "concentration": 62.0
         },
         {
           "code": "01093.HK",
@@ -5806,6 +5900,22 @@
           "consistency": 67.0,
           "conversion": 95.0,
           "concentration": 70.0
+        },
+        {
+          "code": "00700.HK",
+          "name": "腾讯控股",
+          "net": -3.28,
+          "gross": 75.96,
+          "days": 15,
+          "buy_days": 11,
+          "sell_days": 4,
+          "max_buy": 11.25,
+          "max_buy_date": "2026-09-01",
+          "max_sell": -21.02,
+          "max_sell_date": "2026-09-04",
+          "consistency": 73.0,
+          "conversion": 4.0,
+          "concentration": 28.0
         },
         {
           "code": "00148.HK",
@@ -5854,36 +5964,20 @@
           "consistency": 100.0,
           "conversion": 100.0,
           "concentration": 100.0
-        },
-        {
-          "code": "02628.HK",
-          "name": "中国人寿",
-          "net": -1.5,
-          "gross": 6.1,
-          "days": 2,
-          "buy_days": 1,
-          "sell_days": 1,
-          "max_buy": 2.3,
-          "max_buy_date": "2026-09-07",
-          "max_sell": -3.8,
-          "max_sell_date": "2026-09-01",
-          "consistency": 50.0,
-          "conversion": 25.0,
-          "concentration": 62.0
         }
       ]
     }
   },
   "ytd": {
-    "as_of": "2026-09-18",
+    "as_of": "2026-09-21",
     "current": {
       "label": "2026 YTD",
       "start": "2026-01-05",
-      "end": "2026-09-18",
-      "trade_days": 170,
-      "total_net": 4116.24,
-      "avg_per_day": 24.21,
-      "buy_days": 102,
+      "end": "2026-09-21",
+      "trade_days": 171,
+      "total_net": 4156.98,
+      "avg_per_day": 24.31,
+      "buy_days": 103,
       "sell_days": 68,
       "monthly": {
         "2026-01": 689.71,
@@ -5894,7 +5988,7 @@
         "2026-06": 271.11,
         "2026-07": 628.67,
         "2026-08": 103.8,
-        "2026-09": 373.36
+        "2026-09": 414.1
       }
     },
     "last_year_same_period": {
@@ -5918,12 +6012,12 @@
         "2025-09": 1208.94
       }
     },
-    "yoy_delta": -6882.68,
-    "yoy_ratio_pct": 37.4
+    "yoy_delta": -6841.94,
+    "yoy_ratio_pct": 37.8
   },
   "cumulative": {
-    "as_of": "2026-09-18",
-    "total_net": 55142.62,
+    "as_of": "2026-09-21",
+    "total_net": 55183.36,
     "hold_market_cap_trillion_hkd": 12.0
   }
 }
